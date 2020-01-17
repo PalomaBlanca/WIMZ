@@ -1,12 +1,18 @@
 <template>
-    <Map/>
+    <div>
+        <Form/>
+        <GMap/>
+    </div>
 </template>
 <script>
-import Map from '../components/Map'
+import GMap from '../components/GMap'
+import Form from '../components/organisms/Form'
+
 export default {
     name: 'Basic',
     components: {
-        Map
+        GMap,
+        Form
     }
 }
 </script>
