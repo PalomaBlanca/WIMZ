@@ -63,16 +63,14 @@ export default {
         try{
           navigator.geolocation.getCurrentPosition(this.showPosition);
         } catch(e) {
-          console.log(e)
+          //console.log(e)
         }
-          
       } else { 
-          console.log('Ihr Browser unterstützt keine Geolocation.');
+          //console.log('Ihr Browser unterstützt keine Geolocation.');
       }
       
   },
   showPosition(position) {
-    console.log(position)
     this.currentPosition = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,

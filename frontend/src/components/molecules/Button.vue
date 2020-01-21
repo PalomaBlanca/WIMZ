@@ -9,15 +9,14 @@ import VueTypes from 'vue-types'
 export default {
     name: 'Button',
     props: {
-        onClick: '',
+        onClick: VueTypes.func.isRequired,
         leftItem: VueTypes.bool.def(false)
     },
 }
 </script>
 <style lang="scss" scoped>
 .button {
- //border-radius: 5px;
- background-color: red;
+ background-color: green;
  color: white;
  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  font-weight: bold;

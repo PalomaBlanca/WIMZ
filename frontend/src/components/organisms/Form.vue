@@ -3,7 +3,8 @@
         <div class="col-6">
             <input
                 id="setTrainInput" 
-                type="text" 
+                type="text"
+                class="inputFieldStart"
                 placeholder="In welchen Zug steigst du ein?"
                 v-model="setTrainInputValue"
             />
@@ -17,6 +18,7 @@
             <input 
                 id="getTrainInput"
                 type="text" 
+                class="inputFieldStart"
                 placeholder="Welchen Zug suchst du?"
                 v-model="getTrainInputValue"
             />
@@ -44,15 +46,21 @@ export default {
     },
     methods: {
         sendLocationAndTrain() {
-            console.log("send location and train to backend: ", this.setTrainInputValue);
+            //console.log("send location and train to backend: ", this.setTrainInputValue);
         },
         sendTrain() {
-            console.log("send train to backend: ", this.getTrainInputValue);
+            //console.log("send train to backend: ", this.getTrainInputValue);
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.inputFieldStart {
+    border: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: lightblue;
+    padding: 6px;
+}
 </style>
