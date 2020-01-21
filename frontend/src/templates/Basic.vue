@@ -1,7 +1,7 @@
 <template>
-    <div class="row justify-content-md-center">
-        <Form class="col-auto "/>
-        <GMap :listOfMarker=listOfMarker class="col-12"/>
+    <div>
+        <Form/>
+        <GMap :listOfMarker=listOfMarker class="row"/>
     </div>
 </template>
 <script>

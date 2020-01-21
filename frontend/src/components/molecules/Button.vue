@@ -1,20 +1,22 @@
 <template>
-    <button class="button" :type="type">
+    <button class="button left-item" type="button" @click="onClick">
         <slot>
         </slot>
     </button>
 </template>
 <script>
+import VueTypes from 'vue-types'
 export default {
     name: 'Button',
     props: {
-        type: ''
+        onClick: '',
+        leftItem: VueTypes.bool.def(false)
     },
 }
 </script>
 <style lang="scss" scoped>
 .button {
- border-radius: 5px;
+ //border-radius: 5px;
  background-color: red;
  color: white;
  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,5 +26,10 @@ export default {
  padding-bottom: 5px;
  padding-left: 10px;
  padding-right: 10px;
+}
+.left-item{
+    border-radius: 0px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 </style>

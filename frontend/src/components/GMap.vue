@@ -30,15 +30,14 @@
 <script>
 import {gmapApi} from 'vue2-google-maps'
 import VueTypes from 'vue-types'
-import { Vue } from 'vue'
 
 export default {
   name: 'GMap',
   data(){
     return{
       currentPosition: {
-        lat: 10,
-        lng: 10,
+        lat: 0,
+        lng: 0,
       }
     }
   },
@@ -61,12 +60,19 @@ export default {
   methods: {
   getLocation() {
       if (navigator.geolocation) {
+        try{
           navigator.geolocation.getCurrentPosition(this.showPosition);
+        } catch(e) {
+          console.log(e)
+        }
+          
       } else { 
           console.log('Ihr Browser unterstützt keine Geolocation.');
       }
+      
   },
   showPosition(position) {
+    console.log(position)
     this.currentPosition = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
@@ -80,6 +86,6 @@ export default {
 <style lang="scss" scoped>
 .googleMap {
   width: 100%;
-  height: 1000px;
+  height: 500px;
 }
 </style>
