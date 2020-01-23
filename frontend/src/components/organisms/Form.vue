@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-6">
+        <div class="col-sm-12">
             <input
                 id="setTrainInput" 
                 type="text"
@@ -14,7 +14,7 @@
                 EINSTEIGEN
             </Button>
         </div>
-        <div class="col-6">
+        <div class="col-sm-12">
             <input 
                 id="getTrainInput"
                 type="text" 

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <Form/>
+    <div class="container">
+        <Form />
         <GMap :listOfMarker=listOfMarker class="row"/>
     </div>
 </template>
