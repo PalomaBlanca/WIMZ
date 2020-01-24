@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { isProductionEnvironment } from '@/js/env.js';
+import { isProductionEnvironment } from '../../js/env.js';
 
 export default async function(route) {
   // Create a new axios instance with some default settings

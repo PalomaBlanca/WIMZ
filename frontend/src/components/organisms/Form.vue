@@ -33,6 +33,8 @@
 
 <script>
 import Button from '../molecules/Button'
+import api from '../../js/api/testApi';
+
 export default {
     name: 'Form',
     data() {
@@ -45,8 +47,11 @@ export default {
         Button,
     },
     methods: {
-        sendLocationAndTrain() {
-            //console.log("send location and train to backend: ", this.setTrainInputValue);
+        async sendLocationAndTrain() {
+            const value="hallo value";
+            const apiResponse = await api(value);
+            // eslint-disable-next-line no-console
+            console.log(apiResponse);
         },
         sendTrain() {
             //console.log("send train to backend: ", this.getTrainInputValue);
