@@ -11,7 +11,6 @@ export default async function(route) {
     },
     transformRequest(data) {
       return JSON.stringify({
-        route,
         data: JSON.stringify(data),
       });
     },

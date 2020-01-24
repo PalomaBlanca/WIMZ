@@ -1,5 +1,7 @@
-import test from './test';
+import trainAndLocation from './trainAndLocation';
+import searchingForTrain from './searchingForTrain';
 
 export default {
-  test,
+  trainAndLocation,
+  searchingForTrain,
 };

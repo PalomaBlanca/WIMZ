@@ -33,28 +33,53 @@
 
 <script>
 import Button from '../molecules/Button'
-import api from '../../js/api/testApi';
+//import searchingForTrain from '../../js/api/searchingForTrainApi';
+import trainAndLocation from '../../js/api/trainAndLocationApi';
 
 export default {
     name: 'Form',
     data() {
         return {
             setTrainInputValue: '',
-            getTrainInputValue: ''
+            getTrainInputValue: '',
+            currentPosition: {
+                lat: 0,
+                lng: 0,
+            }
         }
     },
     components: {
         Button,
     },
+    mounted(){
+        this.getLocation();
+    },
     methods: {
-        async sendLocationAndTrain() {
-            const value="hallo value";
-            const apiResponse = await api(value);
-            // eslint-disable-next-line no-console
-            console.log(apiResponse);
+        getLocation() {
+            if (navigator.geolocation) {
+                try{
+                    navigator.geolocation.getCurrentPosition(this.showPosition);
+                } catch(e) {
+                    //console.log(e)
+                }
+            } else {
+                //console.log('Ihr Browser unterstützt keine Geolocation.');
+            }
+
         },
-        sendTrain() {
-            //console.log("send train to backend: ", this.getTrainInputValue);
+        showPosition(position) {
+            this.currentPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            }
+        },
+        async sendLocationAndTrain() {
+            if(this.currentPosition.lat !== 0 && this.currentPosition.lng !== 0) {
+                await trainAndLocation(this.currentPosition);
+            }
+        },
+        async sendTrain() {
+            //const searchTrainResponse  = await searchingForTrain(this.getTrainInputValue);
         }
     }
 }

@@ -58,24 +58,24 @@ export default {
     this.getLocation();
   },
   methods: {
-  getLocation() {
-      if (navigator.geolocation) {
-        try{
-          navigator.geolocation.getCurrentPosition(this.showPosition);
-        } catch(e) {
-          //console.log(e)
+    getLocation() {
+        if (navigator.geolocation) {
+          try{
+            navigator.geolocation.getCurrentPosition(this.showPosition);
+          } catch(e) {
+            //console.log(e)
+          }
+        } else {
+            //console.log('Ihr Browser unterstützt keine Geolocation.');
         }
-      } else { 
-          //console.log('Ihr Browser unterstützt keine Geolocation.');
+
+    },
+    showPosition(position) {
+      this.currentPosition = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
       }
-      
-  },
-  showPosition(position) {
-    this.currentPosition = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
     }
-  }
   }
 }
 </script>
