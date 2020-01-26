@@ -22,8 +22,8 @@
                 placeholder="Welchen Zug suchst du?"
                 v-model="getTrainInputValue"
             />
-            <Button 
-                :onClick="sendTrain"
+            <Button
+                    :onClick="sendTrain"
             >
                 FINDEN
             </Button>
@@ -33,53 +33,30 @@
 
 <script>
 import Button from '../molecules/Button'
-//import searchingForTrain from '../../js/api/searchingForTrainApi';
+import searchingForTrain from '../../js/api/searchingForTrainApi';
 import trainAndLocation from '../../js/api/trainAndLocationApi';
+
+import { store } from '../../store/store';
 
 export default {
     name: 'Form',
+    store,
     data() {
         return {
             setTrainInputValue: '',
             getTrainInputValue: '',
-            currentPosition: {
-                lat: 0,
-                lng: 0,
-            }
         }
     },
     components: {
         Button,
     },
-    mounted(){
-        this.getLocation();
-    },
     methods: {
-        getLocation() {
-            if (navigator.geolocation) {
-                try{
-                    navigator.geolocation.getCurrentPosition(this.showPosition);
-                } catch(e) {
-                    //console.log(e)
-                }
-            } else {
-                //console.log('Ihr Browser unterstützt keine Geolocation.');
-            }
-
-        },
-        showPosition(position) {
-            this.currentPosition = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            }
-        },
         async sendLocationAndTrain() {
-            if(this.currentPosition.lat !== 0 && this.currentPosition.lng !== 0) {
-                await trainAndLocation(this.currentPosition);
-            }
+            await trainAndLocation(this.$store.getters.currentLocation);
         },
         async sendTrain() {
-            //const searchTrainResponse  = await searchingForTrain(this.getTrainInputValue);
+            const searchTrainResponse  = await searchingForTrain(this.getTrainInputValue);
+            this.$store.commit('setMarkerOfTrain', searchTrainResponse)
         }
     }
 }

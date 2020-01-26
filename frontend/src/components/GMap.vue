@@ -15,46 +15,42 @@
       }"
       class="googleMap"
     >
-  <GmapMarker
-    :position="google && new google.maps.LatLng(currentPosition)"
-  />
-  <GmapMarker
-    v-for="marker in listOfMarker"
-    :key="marker.lat"
-    :position="google && new google.maps.LatLng(marker.lat, marker.lng)"
-  />
-</GmapMap>
+      <GmapMarker
+              :position="google && new google.maps.LatLng(currentPosition)"
+      />
+      <GmapMarker
+              v-show="getMapData"
+              :position="google && new google.maps.LatLng(getMapData)"
+      />
+    </GmapMap>
   </div>
 </template>
 
 <script>
-import {gmapApi} from 'vue2-google-maps'
-import VueTypes from 'vue-types'
+import { gmapApi } from 'vue2-google-maps'
+import { store } from '../store/store';
 
 export default {
   name: 'GMap',
+  store,
   data(){
-    return{
+    return {
       currentPosition: {
         lat: 0,
-        lng: 0,
+        lng: 0
       }
     }
   },
   computed: {
     google: gmapApi,
-  }, 
-  props: {
-    listOfMarker: VueTypes.arrayOf([
-      VueTypes.shape({
-        lat: VueTypes.number.isRequired,
-        lng: VueTypes.number.isRequired,
-        label: VueTypes.string.isRequired,
-        url: VueTypes.string.def(''),
-      })
-    ]).def([])
-  }, 
-  mounted(){
+    getMapData() {
+      return {
+        lat: this.$store.getters.markerOfTrain.lat,
+        lng: this.$store.getters.markerOfTrain.lng,
+      };
+    }
+  },
+  mounted() {
     this.getLocation();
   },
   methods: {
@@ -68,19 +64,19 @@ export default {
         } else {
             //console.log('Ihr Browser unterstützt keine Geolocation.');
         }
-
     },
+
     showPosition(position) {
       this.currentPosition = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-      }
-    }
+      };
+      this.$store.commit('setCurrentLocation', this.currentPosition)
+    },
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .googleMap {
   width: 100%;

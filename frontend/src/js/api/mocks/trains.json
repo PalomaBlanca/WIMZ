@@ -1,6 +1,6 @@
 {
-  "train": "RE7",
-  "lat": "51.3",
-  "lng": "64.2",
+  "label": "RE7",
+  "lat": 51.3,
+  "lng": 5.1,
   "lastUpdate": "5"
 }
