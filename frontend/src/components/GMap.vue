@@ -32,7 +32,10 @@
               :opened="infoWinOpen"
               @closeclick="infoWinOpen=false"
       >
-        <div v-html="infoContent"></div>
+        <div 
+          v-html="infoContent"
+        >
+        </div>
       </gmap-info-window>
 
     </GmapMap>
@@ -42,14 +45,10 @@
 <script>
 import { gmapApi } from "vue2-google-maps"
 import { store } from "../store/store";
-import InfoWindow from "./molecules/InfoWindow";
 
 export default {
   name: 'GMap',
   store,
-  components: {
-    InfoWindow,
-  },
   data(){
     return {
       currentPosition: {
@@ -77,7 +76,7 @@ export default {
     },
     getLabelForMarker() {
       return (
-              `<div style='background-color: blue;'>${this.$store.getters.markerOfTrain.label} | ${this.$store.getters.markerOfTrain.lastUpdate}min </div>`
+              `${this.$store.getters.markerOfTrain.label} | ${this.$store.getters.markerOfTrain.lastUpdate}min`
       )
     }
   },
