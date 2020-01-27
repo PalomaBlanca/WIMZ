@@ -18,26 +18,52 @@
       <GmapMarker
               :position="google && new google.maps.LatLng(currentPosition)"
       />
+
       <GmapMarker
               v-show="getMapData"
               :position="google && new google.maps.LatLng(getMapData)"
+              :title="$store.getters.markerOfTrain.label"
+              @click="clickedMarker()"
       />
+
+      <gmap-info-window
+              :options="infoOptions"
+              :position="getMapData"
+              :opened="infoWinOpen"
+              @closeclick="infoWinOpen=false"
+      >
+        <div v-html="infoContent"></div>
+      </gmap-info-window>
+
     </GmapMap>
   </div>
 </template>
 
 <script>
-import { gmapApi } from 'vue2-google-maps'
-import { store } from '../store/store';
+import { gmapApi } from "vue2-google-maps"
+import { store } from "../store/store";
+import InfoWindow from "./molecules/InfoWindow";
 
 export default {
   name: 'GMap',
   store,
+  components: {
+    InfoWindow,
+  },
   data(){
     return {
       currentPosition: {
         lat: 0,
         lng: 0
+      },
+      infoContent: '',
+      infoWinOpen: false,
+      infoWindowPos: this.getMapData,
+      infoOptions: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
       }
     }
   },
@@ -48,12 +74,18 @@ export default {
         lat: this.$store.getters.markerOfTrain.lat,
         lng: this.$store.getters.markerOfTrain.lng,
       };
+    },
+    getLabelForMarker() {
+      return (
+              `<div style='background-color: blue;'>${this.$store.getters.markerOfTrain.label} | ${this.$store.getters.markerOfTrain.lastUpdate}min </div>`
+      )
     }
   },
   mounted() {
     this.getLocation();
   },
   methods: {
+
     getLocation() {
         if (navigator.geolocation) {
           try{
@@ -72,6 +104,16 @@ export default {
         lng: position.coords.longitude,
       };
       this.$store.commit('setCurrentLocation', this.currentPosition)
+    },
+
+    clickedMarker () {
+      //this.infoWindowPos = event.target.position;
+      this.infoContent = this.getLabelForMarker;
+
+
+      //check if its the same marker that was selected if yes toggle
+
+      this.infoWinOpen = !this.infoWinOpen;
     },
   }
 }
