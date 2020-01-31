@@ -6,12 +6,12 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         currentLocation: {
-            lat: '',
-            lng: '',
+            lat: 0,
+            lng: 0,
         },
         markerOfTrain: {
-            lat: '',
-            lng: '',
+            lat: 0,
+            lng: 0,
             label: '',
             lastUpdate: ''
         }

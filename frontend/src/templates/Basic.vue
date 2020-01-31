@@ -1,16 +1,16 @@
 <template>
     <div class="container">
         <Form />
-        <GMap class="row"/>
+        <OpenStreetMap/>
     </div>
 </template>
 <script>
-import GMap from '../components/GMap'
+import OpenStreetMap from '../components/organisms/OpenStreetMap'
 import Form from '../components/organisms/Form'
 export default {
     name: 'Basic',
     components: {
-        GMap,
+        OpenStreetMap,
         Form
     }
 }
