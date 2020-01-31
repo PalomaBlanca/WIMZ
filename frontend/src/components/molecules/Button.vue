@@ -15,10 +15,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '../../css/utils.scss';
+
 .button {
- background-color: green;
- color: white;
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background-color: transparent;
+ color: $highlighting-color;
  font-weight: bold;
  border: none;
  padding-top: 5px;
@@ -30,5 +31,14 @@ export default {
     border-radius: 0px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    height: 40px;
+    border: 3px solid $highlighting-color;
+    border-left: none;
+    &:hover, 
+    &:focus {
+        border-color: $focus-color;
+        color: $focus-color;
+        background-color: $focus-background-color;
+    }
 }
 </style>

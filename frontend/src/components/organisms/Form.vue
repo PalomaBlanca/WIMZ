@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-        <div class="col-sm-12">
+    <div>
+        <div class="col-sm-5 input-wrapper">
             <input
                 id="setTrainInput" 
                 type="text"
@@ -14,7 +14,7 @@
                 EINSTEIGEN
             </Button>
         </div>
-        <div class="col-sm-12">
+        <div class="col input-wrapper">
             <input 
                 id="getTrainInput"
                 type="text" 
@@ -63,11 +63,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../css/utils.scss';
+.input-wrapper {
+    padding-bottom: 20px;
+}
 .inputFieldStart {
     border: none;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: lightblue;
-    padding: 6px;
+    background-color: transparent;
+    color: $highlighting-color;
+    border: 3px solid $highlighting-color;
+    padding: 10px;
+    padding-left: 15px;
+    height: 40px;
+    border-right: 3px dotted $highlighting-color;
 }
 </style>

@@ -4,6 +4,7 @@
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-marker :lat-lng="currentPosition"></l-marker>
       <l-marker :lat-lng="marker"></l-marker>
+      <div class="fake-map-border"></div>
     </l-map>
   </div>
 </template>
@@ -116,8 +117,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../css/utils.scss';
+
 .map {
   height: 500px;
-  width: 500px;
+  min-width: 320px;
+}
+.fake-map-border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: transparent;
+  box-shadow: inset 0px 0px 40px 40px $main-base-color;
 }
 </style>

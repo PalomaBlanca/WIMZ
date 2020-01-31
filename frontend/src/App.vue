@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <Basic/>
   </div>
 </template>
@@ -15,5 +15,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'css/utils.scss';
+html {
+  background-color: $main-base-color;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+}
+body {
+  margin: 0;
+}
 </style>

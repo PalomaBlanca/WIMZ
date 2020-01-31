@@ -1,7 +1,9 @@
 <template>
     <div class="container">
-        <Form />
-        <OpenStreetMap/>
+        <div class="content">
+        <Form class="row"/>
+        <OpenStreetMap class="row"/>
+        </div>
     </div>
 </template>
 <script>
@@ -16,5 +18,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../css/grid/index.scss';
+@import '../css/utils.scss';
+.container {
+    background-color: $main-base-color;
+}
+.content {
+    padding-top: 50px; 
+}
 </style>
