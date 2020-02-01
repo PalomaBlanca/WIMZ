@@ -34,8 +34,7 @@ export default {
     height: 40px;
     border: 3px solid $highlighting-color;
     border-left: none;
-    &:hover, 
-    &:focus {
+    &:hover {
         border-color: $focus-color;
         color: $focus-color;
         background-color: $focus-background-color;

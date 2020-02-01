@@ -1,19 +1,24 @@
 <template>
-    <div class="container">
-        <div class="content">
-        <Form class="row"/>
-        <OpenStreetMap class="row"/>
+    <div>
+        <Header />
+        <div class="container">
+            <div class="content">
+            <Form class="row"/>
+            <OpenStreetMap class="row"/>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import OpenStreetMap from '../components/organisms/OpenStreetMap'
 import Form from '../components/organisms/Form'
+import Header from '../components/organisms/Header'
 export default {
     name: 'Basic',
     components: {
         OpenStreetMap,
-        Form
+        Form,
+        Header,
     }
 }
 </script>
