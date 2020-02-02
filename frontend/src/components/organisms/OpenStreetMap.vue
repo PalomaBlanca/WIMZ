@@ -1,11 +1,13 @@
 <template>
-  <div class="map" v-if="currentPosition.lat !== 0">
-    <l-map :zoom="zoom" :center="center">
-      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="currentPosition"></l-marker>
-      <l-marker v-show="marker.lat" :lat-lng="marker"></l-marker>
-      <div class="fake-map-border"></div>
-    </l-map>
+  <div>
+    <div class="map" v-if="currentPosition.lat !== 0">
+      <l-map :zoom="zoom" :center="center">
+        <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+        <l-marker :lat-lng="currentPosition"></l-marker>
+        <l-marker v-show="marker.lat" :lat-lng="marker"></l-marker>
+        <div class="fake-map-border"></div>
+      </l-map>
+    </div>
   </div>
 </template>
 
@@ -122,6 +124,7 @@ export default {
 .map {
   height: 500px;
   min-width: 320px;
+  width: 100%;
 }
 .fake-map-border {
   position: absolute;

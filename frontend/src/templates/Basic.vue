@@ -1,25 +1,30 @@
 <template>
-    <div>
-        <Header />
-        <div class="container">
-            <div class="content">
-            <Form class="row"/>
-            <OpenStreetMap class="row"/>
+    <Scrollbar>
+        <div>
+            <Header />
+            <div class="container">
+                <div class="content">
+                <Form class="row"/>
+                <OpenStreetMap class="row"/>
+                </div>
             </div>
         </div>
-    </div>
+    </Scrollbar>
 </template>
 <script>
 import OpenStreetMap from '../components/organisms/OpenStreetMap'
 import Form from '../components/organisms/Form'
 import Header from '../components/organisms/Header'
+import Scrollbar from '../components/molecules/Scrollbar'
+
 export default {
     name: 'Basic',
     components: {
         OpenStreetMap,
         Form,
         Header,
-    }
+        Scrollbar,
+    },
 }
 </script>
 <style lang="scss" scoped>
@@ -30,5 +35,8 @@ export default {
 }
 .content {
     padding-top: 50px; 
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>

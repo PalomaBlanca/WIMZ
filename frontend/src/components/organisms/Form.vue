@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="col-sm-5 input-wrapper">
+        <div class="col-md-12 col-sm-12 col-lg-6 col-xl-6 input-wrapper">
             <input
                 id="setTrainInput" 
                 type="text"
                 class="inputFieldStart"
-                placeholder="In welchen Zug steigst du ein?"
+                placeholder="In welchen Zug?"
                 v-model="setTrainInputValue"
             />
             <Button 
@@ -33,6 +33,7 @@
 
 <script>
 import Button from '../molecules/Button'
+import Scrollbar from '../molecules/Scrollbar'
 import searchingForTrain from '../../js/api/searchingForTrainApi';
 import trainAndLocation from '../../js/api/trainAndLocationApi';
 
@@ -49,6 +50,7 @@ export default {
     },
     components: {
         Button,
+        Scrollbar,
     },
     methods: {
         async sendLocationAndTrain() {
@@ -71,9 +73,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../css/utils.scss';
+
 .input-wrapper {
     padding-bottom: 20px;
 }
+
 .inputFieldStart {
     border: none;
     border-top-left-radius: 20px;
