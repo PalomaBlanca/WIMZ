@@ -26,6 +26,7 @@ export default {
 @import '../css/utils.scss';
 .container {
     background-color: $main-base-color;
+    max-width: 100%;
 }
 .content {
     padding-top: 50px; 

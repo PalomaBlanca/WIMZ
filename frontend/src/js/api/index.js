@@ -4,7 +4,7 @@ import { isProductionEnvironment } from '../../js/env.js';
 export default async function(route) {
   // Create a new axios instance with some default settings
   const api = axios.create({
-    baseURL: '/api/kundendaten/common',
+    baseURL: `/api/${route}/index.php`,
     // timeout: 1000,
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',

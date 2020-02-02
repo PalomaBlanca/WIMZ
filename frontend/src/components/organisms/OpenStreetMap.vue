@@ -3,7 +3,7 @@
     <l-map :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-marker :lat-lng="currentPosition"></l-marker>
-      <l-marker :lat-lng="marker"></l-marker>
+      <l-marker v-show="marker.lat" :lat-lng="marker"></l-marker>
       <div class="fake-map-border"></div>
     </l-map>
   </div>
@@ -56,7 +56,7 @@ export default {
   created() {
     this.$store.watch(
       (state, getters) => getters.markerOfTrain,
-      (newValue, oldValue) => {
+      (newValue) => {
         if (newValue.lat !== null) {
           this.marker = {
             lat: newValue.lat,

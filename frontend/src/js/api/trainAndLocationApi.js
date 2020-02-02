@@ -1,12 +1,10 @@
 import api from './index.js';
 
 export default async value => {
-  const requestPayload = {
-    value,
-  };
+ 
   // Send request
   const apiTest = await api('trainAndLocation');
-  const response = await apiTest.post('', requestPayload);
+  const response = await apiTest.post('', value);
 
   // Return response
   return response.data;

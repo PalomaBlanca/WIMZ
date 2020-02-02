@@ -52,7 +52,14 @@ export default {
     },
     methods: {
         async sendLocationAndTrain() {
-            await trainAndLocation(this.$store.getters.currentLocation);
+            let payload = 
+            await trainAndLocation({
+                name: this.setTrainInputValue,
+                startStation: "Krefeld Test",
+                targetStation: "Krefeld Test",
+                lat: this.$store.getters.currentLocation.lat,
+                lng: this.$store.getters.currentLocation.lng
+            });
         },
         async sendTrain() {
             const searchTrainResponse  = await searchingForTrain(this.getTrainInputValue);
