@@ -13,7 +13,9 @@ export const store = new Vuex.Store({
             lat: 0,
             lng: 0,
             label: '',
-            lastUpdate: ''
+            lastUpdate: '',
+            from: '',
+            to: ''
         }
     },
     mutations: {

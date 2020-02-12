@@ -3,9 +3,10 @@
     <div class="map" v-if="currentPosition.lat !== 0">
       <l-map :zoom="zoom" :center="center">
         <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-        <l-marker :lat-lng="currentPosition"></l-marker>
-        <l-marker v-show="marker.lat" :lat-lng="marker"></l-marker>
-        <div class="fake-map-border"></div>
+        <l-marker :lat-lng="currentPosition"/>
+        <l-marker v-show="marker.lat" :lat-lng="marker">
+          <InfoWindow :isTrain="true"/>
+        </l-marker>
       </l-map>
     </div>
   </div>
@@ -13,7 +14,8 @@
 
 <script>
 import { store } from "../../store/store";
-import {LMap, LTileLayer, LMarker} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LPopup} from 'vue2-leaflet';
+import InfoWindow from '../molecules/InfoWindow'
 
 export default {
   name: 'OpenStreetMap',
@@ -21,7 +23,9 @@ export default {
   components: {
     LMap, 
     LTileLayer, 
-    LMarker
+    LMarker,
+    LPopup,
+    InfoWindow
   },
   data(){
     return {
@@ -48,11 +52,6 @@ export default {
         lat: this.currentPosition.lat,
         lng: this.currentPosition.lng,
       };
-    },
-    getLabelForMarker() {
-      return (
-        `${this.$store.getters.markerOfTrain.label} | ${this.$store.getters.markerOfTrain.lastUpdate}min`
-      )
     },
   },
   created() {
@@ -114,6 +113,16 @@ export default {
 
       this.infoWinOpen = !this.infoWinOpen;*/
     },
+    onMarkerClick(e){
+      console.log("hallo");
+      this.$nextTick( () => e.target.openPopup() )
+      /*
+      L.popup()
+    .setLatLng([51.5, -0.09])
+    .setContent("I am a standalone popup.")
+    .openOn(mymap);
+      */
+    }
   }
 }
 </script>
@@ -125,13 +134,5 @@ export default {
   height: 500px;
   min-width: 320px;
   width: 100%;
-}
-.fake-map-border {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background-color: transparent;
-  box-shadow: inset 0px 0px 40px 40px $main-base-color;
 }
 </style>

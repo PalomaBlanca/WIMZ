@@ -1,5 +1,5 @@
 <template>
-    <perfect-scrollbar class="scroll-area" v-once :settings="settings" @ps-scroll-y="scrollHandle">
+    <perfect-scrollbar class="scroll-area" :settings="settings">
         <slot>
         </slot>
     </perfect-scrollbar>
