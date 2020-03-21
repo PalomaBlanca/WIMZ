@@ -7,6 +7,13 @@
                 class="inputFieldStart"
                 placeholder="In welchen Zug?"
                 v-model="setTrainInputValue"
+            />            
+            <input
+                id="setTargetOfTrainInput" 
+                type="text"
+                class="inputFieldStart"
+                placeholder="Wohin fährt der Zug?"
+                v-model="setTargetOfTrain"
             />
             <Button 
                 :onClick="sendLocationAndTrain"
@@ -21,6 +28,13 @@
                 class="inputFieldStart"
                 placeholder="Welchen Zug suchst du?"
                 v-model="getTrainInputValue"
+            />
+            <input
+                id="getTargetOfTrainInput" 
+                type="text"
+                class="inputFieldStart"
+                placeholder="Wohin fährt der Zug?"
+                v-model="getTargetOfTrain"
             />
             <Button
                     :onClick="sendTrain"
@@ -46,6 +60,8 @@ export default {
         return {
             setTrainInputValue: '',
             getTrainInputValue: '',
+            setTargetOfTrain: '',
+            getTargetOfTrain: '',
         }
     },
     components: {
@@ -57,8 +73,7 @@ export default {
             let payload = 
             await trainAndLocation({
                 name: this.setTrainInputValue,
-                startStation: "Krefeld Test",
-                targetStation: "Krefeld Test",
+                targetStation: this.setTargetOfTrain,
                 lat: this.$store.getters.currentLocation.lat,
                 lng: this.$store.getters.currentLocation.lng
             });
@@ -79,15 +94,12 @@ export default {
 }
 
 .inputFieldStart {
-    border: none;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-radius: 20px;
     background-color: transparent;
     color: $highlighting-color;
     border: 3px solid $highlighting-color;
     padding: 10px;
     padding-left: 15px;
     height: 40px;
-    border-right: 3px dotted $highlighting-color;
 }
 </style>

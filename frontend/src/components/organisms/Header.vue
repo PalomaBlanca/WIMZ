@@ -1,7 +1,14 @@
 <template>
-    <header>
-        <div class="header-text">
-            WIMZ
+    <header class="mb-5 container-fluid">
+        <div class="mt-3 row">
+            <div class="col-3"></div>
+            <img class="col-6" src="@/assets/logo.png" alt="Logo"/>
+            <div class="col-3"></div>
+        </div>
+        <div class="row mt-2">
+            <p class="text-center w-100">
+                Reisende helfen Reisenden.    
+            </p>
         </div>
     </header>
 </template>
@@ -14,17 +21,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../css/utils.scss';
-    header {
-        background-color: $focus-color;
-        min-height: 30px;
-        height: 10vh;
-        text-align: center;
-    }
-
-    .header-text {
-        height: 100%;
-        font-weight: bold;
-        font-size: 50px;
-        color: $main-base-color;
-    }
 </style>

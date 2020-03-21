@@ -1,5 +1,5 @@
 <template>
-    <button class="button left-item" type="button" @click="onClick">
+    <button class="button" type="button" @click="onClick">
         <slot>
         </slot>
     </button>
@@ -10,7 +10,6 @@ export default {
     name: 'Button',
     props: {
         onClick: VueTypes.func.isRequired,
-        leftItem: VueTypes.bool.def(false)
     },
 }
 </script>
@@ -21,20 +20,13 @@ export default {
  background-color: transparent;
  color: $highlighting-color;
  font-weight: bold;
- border: none;
- padding-top: 5px;
- padding-bottom: 5px;
- padding-left: 10px;
- padding-right: 10px;
-}
-.left-item{
-    border-radius: 0px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    height: 40px;
-    border: 3px solid $highlighting-color;
-    border-left: none;
-    &:hover {
+ border: 3px solid $highlighting-color;
+ border-radius: 20px;
+ padding: 10px;
+ padding-left: 15px;
+ padding-right: 15px;
+ height: 40px;
+     &:hover {
         border-color: $focus-color;
         color: $focus-color;
         background-color: $focus-background-color;

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Basic from './templates/Basic.vue'
+import Basic from '@/components/templates/StartPage.vue'
 
 export default {
   name: 'app',
@@ -18,7 +18,7 @@ export default {
 <style lang="scss">
 @import 'css/utils.scss';
 html {
-  background-color: $main-base-color;
+  background-color: $background-color;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0;
 }
