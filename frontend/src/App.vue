@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Basic/>
+    <router-view/>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'css/utils.scss';
+@import '@/css/utils.scss';
 html {
   background-color: $background-color;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,5 +24,6 @@ html {
 }
 body {
   margin: 0;
+  background-color: $background-color;
 }
 </style>

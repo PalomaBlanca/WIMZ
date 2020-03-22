@@ -50,6 +50,7 @@ export default {
 .btn {
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 60px;
 }
 
 .button-group {

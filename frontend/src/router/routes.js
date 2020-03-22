@@ -3,33 +3,27 @@ import GiveInfo from '@/components/templates/GiveInfo';
 import GetInfo from '@/components/templates/GetInfo';
 import StartPage from '@/components/templates/StartPage'
 
-export default [
+const routes = [
     {
         path: '/',
         name: 'start',
-        components: {
-            'start': StartPage,
-        },
+        component: StartPage,
     },
     {
         path: '/info',
         name: 'give-info',
-        components: {
-            'give-info': GiveInfo,
-        },
+        component: GiveInfo,
     },
     {
         path: '/train',
         name: 'get-info',
-        components: {
-            'get-info': GetInfo,
-        },
+        component: GetInfo,
     },
     {
         path: '/about-us',
         name: 'about-us',
-        components: {
-            'about-us': AboutUs,
-        },
+        component: AboutUs,
     },
 ];
+
+export default routes;
