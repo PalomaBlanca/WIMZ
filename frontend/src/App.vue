@@ -5,13 +5,9 @@
 </template>
 
 <script>
-import Basic from '@/components/templates/StartPage.vue'
 
 export default {
   name: 'app',
-  components: {
-    Basic
-  }
 }
 </script>
 

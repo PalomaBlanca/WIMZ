@@ -1,7 +1,11 @@
 <template>
     <div>
         <Header/>
-        <Navigation/>
+        <Navigation
+            @wantsToGiveInfo="handleClick('give-info')"
+            @wantsToGetInfo="handleClick('get-info')"
+            @wantsToKnowAboutUs="handleClick('about-us')"
+        />
         <Footer/>
     </div>
 </template>
@@ -13,11 +17,18 @@ import Navigation from '@/components/organisms/Navigation';
 
 export default {
     name: 'about-us',
+    
     components: {
         Header, 
         Footer,
         Navigation
-    }
+    },
+
+    methods: {
+        handleClick(way) {
+            this.$router.push({name: way});
+        }
+    },
     
 }
 </script>

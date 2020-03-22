@@ -47,7 +47,7 @@ import Footer from '@/components/organisms/Footer';
 import FormGiveInfo from '@/components/organisms/FormGiveInfo'
 
 export default {
-    name: 'StartPage',
+    name: 'GiveInfo',
 
     components:  {
         Navigation,
