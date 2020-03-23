@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <form class="row form-group">
+        <form 
+            class="row form-group" 
+            @submit.prevent="sendLocationAndTrain"
+        >
             <label for="setTrainInput">Zug:</label>   
             <input
                 id="setTrainInput" 
@@ -20,20 +23,19 @@
                 v-model="setTargetOfTrain"
             />
             <label for="comment">Zusätliche Infos:</label>
-            <textarea class="col-12 form-control" id="comment" rows="6"></textarea>
+            <textarea class="col-12 form-control" id="comment" rows="6" v-model="setTrainComment"></textarea>
             
             <label class="col-8 label-toggle-button">Bist du im Zug?</label>
             <div class="col text-right">
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" v-model="userIsInTrain">
                     <span class="slider"></span>
                 </label>
             </div>
 
             <button 
-                type="button" 
+                type="submit" 
                 class="col-12 btn btn-danger"
-                :onClick="sendLocationAndTrain"
             >
                 <svg class="bi bi-geo" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11 4a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -42,14 +44,13 @@
                 </svg>
                 Meldung abschicken
             </button>
-            <location-handler/>
+            <location-handler v-if="userIsInTrain"/>
         </form>
     </div>
 </template>
 
 <script>
 import LocationHandler from '@/components/molecules/LocationHandler';
-import searchingForTrain from '@/js/api/searchingForTrainApi';
 import trainAndLocation from '@/js/api/trainAndLocationApi';
 
 import { store } from '@/store/store';
@@ -66,23 +67,22 @@ export default {
             getTrainInputValue: '',
             setTargetOfTrain: '',
             getTargetOfTrain: '',
+            setTrainComment: '',
             userIsInTrain: false,
+            trainAndLocationResponse: '',
         }
     },
 
     methods: {
         async sendLocationAndTrain() {
-            let payload = 
+            this.trainAndLocationResponse = 
             await trainAndLocation({
                 name: this.setTrainInputValue,
                 targetStation: this.setTargetOfTrain,
-                lat: this.$store.getters.currentLocation.lat,
-                lng: this.$store.getters.currentLocation.lng
+                lat: this.$store.getters.currentLocation.lat | null,
+                lng: this.$store.getters.currentLocation.lng || null
             });
-        },
-        async sendTrain() {
-            const searchTrainResponse  = await searchingForTrain(this.getTrainInputValue);
-            this.$store.commit('setMarkerOfTrain', searchTrainResponse)
+            console.log(this.trainAndLocationResponse);
         },
     }
 }
