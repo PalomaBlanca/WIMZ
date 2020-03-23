@@ -11,55 +11,39 @@ export default {
             currentLocation: {
                 lat: 51.2,
                 lng: 4.1,
-            },
-            geoSettings: {
-                enableHighAccuracy: false,
-                maximumAge        : 30000,
-                timeout           : 20000
             }
         }
     },
 
     mounted() {
-        this.handlePermission();
+        this.getLocation();
     },
 
     methods: {
-        handlePermission() {
+        async getLocation() {
             let data = this;
-            navigator.permissions.query({name:'geolocation'}).then(function(result) {
-                if (result.state == 'granted') {
-                    data.report(result.state);
-                } else if (result.state == 'prompt') {
-                    data.report(result.state);
-                    navigator.geolocation.getCurrentPosition(pos => {
-                        data.revealPosition(pos);
-                    });
-                   // navigator.geolocation.getCurrentPosition(data.revealPosition(), data.positionDenied(), data.geoSettings);
-                } else if (result.state == 'denied') {
-                    data.report(result.state);
+            return new Promise((resolve, reject) => {
+
+                if(!("geolocation" in navigator)) {
+                    reject(new Error('Geolocation is not available.'));
                 }
-                result.onchange = function() {
-                    data.report(result.state);
-                }
+
+                navigator.geolocation.getCurrentPosition(pos => {
+                    data.showPosition(pos);
+                }, err => {
+                    reject(err);
+                });
+
             });
         },
-
-        report(state) {
-            let data = this;
-            navigator.geolocation.getCurrentPosition(pos => {
-                data.revealPosition(pos);
-            });
-            console.log('Permission', state);
+        showPosition(position) {
+            this.currentLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            };
+            this.$store.commit('setCurrentLocation', this.currentLocation)
         },
-
-        revealPosition(position) {
-            console.log('Position', position)
-        },
-
-        positionDenied() {
-
-        }
     }
+       
 }
 </script>

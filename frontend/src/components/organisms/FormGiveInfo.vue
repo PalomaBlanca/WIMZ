@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row form-group">
+        <form class="row form-group">
             <label for="setTrainInput">Zug:</label>   
             <input
                 id="setTrainInput" 
@@ -21,6 +21,15 @@
             />
             <label for="comment">Zusätliche Infos:</label>
             <textarea class="col-12 form-control" id="comment" rows="6"></textarea>
+            
+            <label class="col-8 label-toggle-button">Bist du im Zug?</label>
+            <div class="col text-right">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
             <button 
                 type="button" 
                 class="col-12 btn btn-danger"
@@ -34,7 +43,7 @@
                 Meldung abschicken
             </button>
             <location-handler/>
-        </div>
+        </form>
     </div>
 </template>
 
@@ -57,6 +66,7 @@ export default {
             getTrainInputValue: '',
             setTargetOfTrain: '',
             getTargetOfTrain: '',
+            userIsInTrain: false,
         }
     },
 
@@ -73,7 +83,7 @@ export default {
         async sendTrain() {
             const searchTrainResponse  = await searchingForTrain(this.getTrainInputValue);
             this.$store.commit('setMarkerOfTrain', searchTrainResponse)
-        }
+        },
     }
 }
 </script>
@@ -93,5 +103,59 @@ export default {
 }
 .form-control {
     margin-bottom: 30px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 28px;
+  margin-right: -15px;
+  margin-bottom: 30px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(12px);
+}
+.label-toggle-button {
+    margin-left: -15px;
 }
 </style>

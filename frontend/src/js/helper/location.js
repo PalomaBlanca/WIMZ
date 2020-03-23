@@ -3,10 +3,10 @@ function getLocation() {
         try{
             navigator.geolocation.getCurrentPosition(getPosition);
         } catch(e) {
-            //console.log(e)
+            console.log(e)
         }
     } else {
-        //console.log('Ihr Browser unterstützt keine Geolocation.');
+        console.log('Ihr Browser unterstützt keine Geolocation.');
     }
 }
 
