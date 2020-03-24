@@ -1,8 +1,20 @@
-{ 
-  "label": "RE8", 
-  "lat": 51.33876058, 
-  "lng": 6.57803257, 
-  "lastUpdate": "5",
-  "from": "Krefeld",
-  "to": "Köln"
-}
+[
+  {
+    "lat": 0,
+    "lng": 0,
+    "label": "",
+    "lastUpdate": "",
+    "userIsInTrain": true,
+    "comment": "",
+    "to": ""
+  },
+  {
+    "lat": 0,
+    "lng": 0,
+    "label": "",
+    "lastUpdate": "",
+    "userIsInTrain": false,
+    "comment": "",
+    "to": ""
+  }
+]           

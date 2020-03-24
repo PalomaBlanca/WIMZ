@@ -28,7 +28,7 @@
             <label class="col-8 label-toggle-button">Bist du im Zug?</label>
             <div class="col text-right">
                 <label class="switch">
-                    <input type="checkbox" v-model="userIsInTrain">
+                    <input name="comment" type="checkbox" v-model="userIsInTrain">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -79,10 +79,11 @@ export default {
             await trainAndLocation({
                 name: this.setTrainInputValue,
                 targetStation: this.setTargetOfTrain,
-                lat: this.$store.getters.currentLocation.lat | null,
+                comment: this.setTrainComment,
+                userIsInTrain: this.userIsInTrain,
+                lat: this.$store.getters.currentLocation.lat || null,
                 lng: this.$store.getters.currentLocation.lng || null
             });
-            console.log(this.trainAndLocationResponse);
         },
     }
 }
@@ -90,17 +91,20 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/css/utils.scss';
+
 .container {
     border: 2px dashed $border-color;
     border-radius: 10px;
     padding-top: 30px;
     padding-bottom: 30px;
 }
+
 .form-group {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
+
 .form-control {
     margin-bottom: 30px;
 }
@@ -112,6 +116,7 @@ export default {
   height: 28px;
   margin-right: -15px;
   margin-bottom: 30px;
+  border-radius: 5px;
 }
 
 .switch input { 
@@ -127,9 +132,10 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #C82333;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 5px;
 }
 
 .slider:before {
@@ -142,6 +148,7 @@ export default {
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 3px;
 }
 
 input:checked + .slider {

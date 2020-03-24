@@ -9,25 +9,29 @@ export const store = new Vuex.Store({
             lat: 0,
             lng: 0,
         },
-        markerOfTrain: {
+        markersOfTrain: [],
+        /* 
+        {
             lat: 0,
             lng: 0,
             label: '',
             lastUpdate: '',
+            comment: '',
             from: '',
             to: ''
         }
+        */
     },
     mutations: {
         setCurrentLocation(state, currentLocation) {
             state.currentLocation = currentLocation;
         },
         setMarkerOfTrain(state, payload) {
-            state.markerOfTrain = payload;
+            state.markersOfTrain = payload;
         }
     },
     getters: {
         currentLocation: state => state.currentLocation,
-        markerOfTrain: state => state.markerOfTrain
+        markersOfTrain: state => state.markersOfTrain
     }
 });

@@ -1,12 +1,12 @@
 import wait from '../../wait'
-import fewResults from './sucheResponseFewResults.json'
+import successResponse from './successResponse.json'
 
 export default (mockAdapter) => {
   mockAdapter.onPost('').reply(async config => {
     // eslint-disable-next-line no-console
     console.log('"trainAndLocation" api mock received payload', config.data);
 
-    const results = fewResults;
+    const results = successResponse;
 
     await wait(1000);
     return [

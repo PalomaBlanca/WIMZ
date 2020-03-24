@@ -56,7 +56,7 @@ export default {
   },
   created() {
     this.$store.watch(
-      (state, getters) => getters.markerOfTrain,
+      (state, getters) => getters.markersOfTrain,
       (newValue) => {
         if (newValue.lat !== null) {
           this.marker = {

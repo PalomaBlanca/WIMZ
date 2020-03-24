@@ -1,6 +1,9 @@
 <template>
     <div class="container">
-        <div class="row form-group">
+        <form 
+            class="row form-group" 
+            @submit.prevent="sendTrain"
+        >
             <label for="getTrainInput">Zug:</label>
             <input 
                 id="getTrainInput"
@@ -20,24 +23,20 @@
                 v-model="getTargetOfTrain"
             />
             <button 
-                type="button" 
+                type="submit" 
                 class="col-12 btn btn-success"
-                :onClick="sendTrain"
             >
                 <svg class="bi bi-lightning-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M11.251.068a.5.5 0 01.227.58L9.677 6.5H13a.5.5 0 01.364.843l-8 8.5a.5.5 0 01-.842-.49L6.323 9.5H3a.5.5 0 01-.364-.843l8-8.5a.5.5 0 01.615-.09z" clip-rule="evenodd"/>
                 </svg>
                 Info erhalten
             </button>
-        </div>
+        </form>
     </div>
 </template>
 
 <script>
-import Button from '@/components/molecules/Button'
-import Scrollbar from '@/components/molecules/Scrollbar'
 import searchingForTrain from '@/js/api/searchingForTrainApi';
-import trainAndLocation from '@/js/api/trainAndLocationApi';
 
 import { store } from '@/store/store';
 
@@ -46,25 +45,17 @@ export default {
     store,
     data() {
         return {
-            setTrainInputValue: '',
             getTrainInputValue: '',
-            setTargetOfTrain: '',
             getTargetOfTrain: '',
         }
     },
 
     methods: {
-        async sendLocationAndTrain() {
-            let payload = 
-            await trainAndLocation({
-                name: this.setTrainInputValue,
-                targetStation: this.setTargetOfTrain,
-                lat: this.$store.getters.currentLocation.lat,
-                lng: this.$store.getters.currentLocation.lng
-            });
-        },
         async sendTrain() {
-            const searchTrainResponse  = await searchingForTrain(this.getTrainInputValue);
+            const searchTrainResponse  = await searchingForTrain({
+                getTrainInputValue: this.getTrainInputValue,
+                getTargetOfTrain: this.getTargetOfTrain,
+            });
             this.$store.commit('setMarkerOfTrain', searchTrainResponse)
         }
     }
