@@ -4,6 +4,7 @@ export default async query => {
     const requestPayload = {
         query,
     };
+
     // Send request
     const apiTest = await api('searchingForTrain');
     const response = await apiTest.post('', requestPayload);

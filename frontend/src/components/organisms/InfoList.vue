@@ -11,6 +11,22 @@
             :target="item.to"
         />
         </template>
+
+        <label> Legende: </label>
+        <div class="legend">            
+            <div class="legend-item">
+                <div style="height: 12px; width: 12px;" class="bg-success rounded-circle"></div>
+                <p class="ml-2 mb-0">
+                    Diese Info stammt aus dem Zug. 
+                </p>
+            </div>
+            <div class="legend-item ml-3">
+                <div style="height: 12px; width: 12px;" class="bg-warning rounded-circle"></div>
+                <p class="ml-2 mb-0">
+                    Diese Info wurde außerhalb des Zuges erfasst.
+                </p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -38,5 +54,14 @@ export default {
 
 .info-box {
     margin: 15px;
+}
+
+.legend {
+    display: flex;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
 }
 </style>

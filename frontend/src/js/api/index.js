@@ -31,7 +31,6 @@ export default async function(route) {
     if (mocks[route]) {
       mocks[route](mockAdapter);
     }
-
     // Finally let all remaining, unmocked requests pass to the real api over network
     mockAdapter.onAny().passThrough();
   }

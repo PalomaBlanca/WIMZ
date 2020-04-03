@@ -1,7 +1,11 @@
 <template>
-    <div class="row card-item rounded">
+    <div 
+        class="row card-item rounded"
+        :class="{'bg-success': userIsInTrain, 'bg-warning': !userIsInTrain}"
+    >
+
         <div class="header col-12">
-            <h5 class="headline mb-0">{{ headline }}</h5>
+            <h5 class="headline mb-0">{{ headline }} nach {{ target }}</h5>
             <h6 class="subheadline mb-0 ml-auto mr-0">vor {{ time }}min</h6>
         </div>
         <p class="col-12 p-3">{{ comment }}</p>
@@ -18,6 +22,7 @@ export default {
         time: VueTypes.number,
         comment: VueTypes.string.def('kein Kommentar ...'),
         target: VueTypes.string.isRequired,
+        userIsInTrain: VueTypes.bool.def(false),
     }
 }
 </script>

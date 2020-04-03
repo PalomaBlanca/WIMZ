@@ -16,16 +16,26 @@ import VueTypes from 'vue-types';
             time: VueTypes.number,
             comment: VueTypes.string.def(''),
             target: VueTypes.string.isRequired,
+            userIsInTrain: VueTypes.bool.def(false),
         },
 
         computed: {
             getLabelForMarker() {
-                return (
-                    `<div class="popUp"><b>${this.headline} </b> | 
-                    ${this.time}min <br/>
-                    nach: 
-                    ${this.target}</div><br/><br/>Nachricht:<br/><div>${this.comment}</div>`
-                )
+                if(this.userIsInTrain){
+                    return (
+                        `<div class="popUp bg-success"><b>${this.headline} </b> | 
+                        ${this.time}min <br/>
+                        nach: 
+                        ${this.target}<br/><br/>Nachricht:<br/><div>${this.comment}</div></div>`
+                    )
+                } else {
+                    return (
+                        `<div class="popUp bg-warning"><b>${this.headline} </b> | 
+                        ${this.time}min <br/>
+                        nach: 
+                        ${this.target}<br/><br/>Nachricht:<br/><div>${this.comment}</div></div>`
+                    )
+                }
             },
         }
     }
