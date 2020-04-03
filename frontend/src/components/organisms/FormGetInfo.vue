@@ -38,7 +38,7 @@
 <script>
 import searchingForTrain from '@/js/api/searchingForTrainApi';
 
-import { store } from '@/store/store';
+import store from '@/store/store';
 
 export default {
     name: 'FormGetInfo',

@@ -53,7 +53,7 @@
 import LocationHandler from '@/components/molecules/LocationHandler';
 import trainAndLocation from '@/js/api/trainAndLocationApi';
 
-import { store } from '@/store/store';
+import store from '@/store/store';
 
 export default {
     name: 'FormGiveInfo',

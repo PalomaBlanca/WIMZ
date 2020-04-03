@@ -1,20 +1,20 @@
 [
   {
-    "lat": 0,
-    "lng": 0,
-    "label": "",
-    "lastUpdate": "",
+    "lat": 51.2,
+    "lng": 6.1,
+    "label": "RE6",
+    "lastUpdate": 5,
     "userIsInTrain": true,
-    "comment": "",
-    "to": ""
+    "comment": "Stehen hier schon seit 5min. Durchsage: Müssen einen anderen Zug vorlassen.",
+    "to": "Düsseldorf"
   },
   {
-    "lat": 0,
-    "lng": 0,
-    "label": "",
-    "lastUpdate": "",
+    "lat": 50.1,
+    "lng": 6.3,
+    "label": "RE6",
+    "lastUpdate": 6,
     "userIsInTrain": false,
-    "comment": "",
-    "to": ""
+    "comment": "Überholvorgang seit 4min",
+    "to": "Düsseldorf Hbf"
   }
 ]           

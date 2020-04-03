@@ -4,18 +4,27 @@
 </template>
 <script>
 import {LPopup} from 'vue2-leaflet';
+import VueTypes from 'vue-types';
     export default {
         name: 'InfoWindow',
         components: {
             LPopup
         },
+
+        props: {
+            headline: VueTypes.string.isRequired,
+            time: VueTypes.number,
+            comment: VueTypes.string.def(''),
+            target: VueTypes.string.isRequired,
+        },
+
         computed: {
             getLabelForMarker() {
                 return (
-                    `<div class="popUp"><b>${this.$store.getters.markerOfTrain.label} </b> | 
-                    ${this.$store.getters.markerOfTrain.lastUpdate}min <br/>
+                    `<div class="popUp"><b>${this.headline} </b> | 
+                    ${this.time}min <br/>
                     nach: 
-                    ${this.$store.getters.markerOfTrain.to}</div>`
+                    ${this.target}</div><br/><br/>Nachricht:<br/><div>${this.comment}</div>`
                 )
             },
         }

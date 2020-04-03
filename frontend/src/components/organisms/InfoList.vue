@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div class="container">
         <template v-for="(item, index) in infoList">
         <info-box 
+            class="info-box"
             :key="index"
             :headline="item.label" 
             :time="item.lastUpdate"
@@ -15,7 +16,7 @@
 
 <script>
 import InfoBox from '@/components/molecules/InfoBox';
-import { store } from '@/store/store.js'
+import store from '@/store/store.js'
 
 export default {
     store,
@@ -33,5 +34,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/css/utils.scss';
 
+.info-box {
+    margin: 15px;
+}
 </style>

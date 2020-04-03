@@ -23,8 +23,8 @@
                 </div>
             </div>
         </div>
-        <info-list/>
-        <Map/>
+        <Map v-if="mapIsOpen"/>
+        <info-list v-else class="info-list"/>
         <Footer/>
     </div>
 </template>
@@ -71,7 +71,6 @@ export default {
     margin-right: 15px;
     margin-left: 15px;
 } 
-
 .switch {
   position: relative;
   display: inline-block;

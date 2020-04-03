@@ -1,5 +1,10 @@
 <template>
-    <div>
+    <div class="row card-item rounded">
+        <div class="header col-12">
+            <h5 class="headline mb-0">{{ headline }}</h5>
+            <h6 class="subheadline mb-0 ml-auto mr-0">vor {{ time }}min</h6>
+        </div>
+        <p class="col-12 p-3">{{ comment }}</p>
     </div>
 </template>
 
@@ -9,14 +14,33 @@ import VueTypes from 'vue-types'
 export default {
     name:"InfoBox",
     props: {
-        headline: VueTypes.string,
-        time: VueTypes.string,
-        comment: VueTypes.string,
+        headline: VueTypes.string.isRequired,
+        time: VueTypes.number,
+        comment: VueTypes.string.def('kein Kommentar ...'),
         target: VueTypes.string.isRequired,
     }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/css/utils.scss';
+
+h5 {
+    color: white;
+}
+
+h6 {
+    color: lightgray;
+}
+
+.card-item {
+    background-color: $highlighting-color;
+}
+
+.header {
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    padding: 15px;
+}
 
 </style>
