@@ -20,7 +20,7 @@ export default {
     props: {
         headline: VueTypes.string.isRequired,
         time: VueTypes.number,
-        comment: VueTypes.string.def('kein Kommentar ...'),
+        comment: VueTypes.string.def('kein Kommentar vorhanden :('),
         target: VueTypes.string.isRequired,
         userIsInTrain: VueTypes.bool.def(false),
     }

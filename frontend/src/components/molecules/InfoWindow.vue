@@ -14,7 +14,7 @@ import VueTypes from 'vue-types';
         props: {
             headline: VueTypes.string.isRequired,
             time: VueTypes.number,
-            comment: VueTypes.string.def(''),
+            comment: VueTypes.string.def('Kein Kommentar vorhanden :('),
             target: VueTypes.string.isRequired,
             userIsInTrain: VueTypes.bool.def(false),
         },
