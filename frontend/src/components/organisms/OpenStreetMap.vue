@@ -15,6 +15,7 @@
 <script>
 import { store } from "../../store/store";
 import {LMap, LTileLayer, LMarker, LPopup} from 'vue2-leaflet';
+//import {LPopup} from 'vue2-leaflet';
 import InfoWindow from '../molecules/InfoWindow'
 
 export default {
@@ -24,7 +25,7 @@ export default {
     LMap, 
     LTileLayer, 
     LMarker,
-    LPopup,
+    //LPopup,
     InfoWindow
   },
   data(){
@@ -46,14 +47,16 @@ export default {
       },
     }
   },
-  computed: {
+
+/*   computed: {
     getMapData() {
       this.center =  {
         lat: this.currentPosition.lat,
         lng: this.currentPosition.lng,
       };
     },
-  },
+  }, */
+
   created() {
     this.$store.watch(
       (state, getters) => getters.markersOfTrain,
@@ -78,7 +81,14 @@ export default {
     this.getMapData;
   },
   methods: {
-     async getLocation() {
+    getMapData() {
+      this.center =  {
+        lat: this.currentPosition.lat,
+        lng: this.currentPosition.lng,
+      };
+    },
+
+    async getLocation() {
       
       return new Promise((resolve, reject) => {
 
@@ -94,12 +104,12 @@ export default {
 
       });
     },
+    
     showPosition(position) {
       this.currentPosition = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
-      console.log(this.currentPosition)
       this.$store.commit('setCurrentLocation', this.currentPosition)
     },
 
@@ -114,7 +124,6 @@ export default {
       this.infoWinOpen = !this.infoWinOpen;*/
     },
     onMarkerClick(e){
-      console.log("hallo");
       this.$nextTick( () => e.target.openPopup() )
       /*
       L.popup()

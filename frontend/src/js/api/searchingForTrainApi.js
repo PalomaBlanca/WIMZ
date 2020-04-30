@@ -9,6 +9,9 @@ export default async query => {
     const apiTest = await api('searchingForTrain');
     const response = await apiTest.post('', requestPayload);
 
+    if(response.status !== 200){
+        response.data = [];
+    }
     // Return response
     return response.data;
 };

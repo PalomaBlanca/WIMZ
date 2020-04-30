@@ -52,11 +52,14 @@ export default {
 
     methods: {
         async sendTrain() {
+            this.$store.commit('setIsLoadingGetInfo', true)
+            this.isLoading = true;
             const searchTrainResponse  = await searchingForTrain({
                 getTrainInputValue: this.getTrainInputValue,
                 getTargetOfTrain: this.getTargetOfTrain,
             });
             this.$store.commit('setMarkerOfTrain', searchTrainResponse)
+            this.$store.commit('setIsLoadingGetInfo', false)
         }
     }
 }

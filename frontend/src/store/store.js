@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        isLoadingGetInfo: false,
         currentLocation: {
             lat: 0,
             lng: 0,
@@ -28,10 +29,14 @@ export default new Vuex.Store({
         },
         setMarkerOfTrain(state, payload) {
             state.markersOfTrain = payload;
+        },
+        setIsLoadingGetInfo(state, payload){
+            state.isLoadingGetInfo = payload;
         }
     },
     getters: {
         currentLocation: state => state.currentLocation,
-        markersOfTrain: state => state.markersOfTrain
+        markersOfTrain: state => state.markersOfTrain,
+        isLoadingGetInfo: state => state.isLoadingGetInfo,
     }
 });

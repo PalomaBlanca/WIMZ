@@ -7,7 +7,7 @@ export default (mockAdapter) => {
         console.log('"searchingForTrain" api mock received payload ', config.data);
         let results = trains;
 
-        await wait(1000);
+        await wait(2000);
         return [
             200,
             results,
