@@ -1,11 +1,7 @@
 <template>
     <div class="start-page-wrapper">
         <Header/>
-        <Navigation
-            @wantsToGiveInfo="handleClick('give-info')"
-            @wantsToGetInfo="handleClick('get-info')"
-            @wantsToKnowAboutUs="handleClick('about-us')"
-        />
+        <Navigation/>
         <div class="text-wrapper">
             <p>
                 <b>W</b>o <b>i</b>st <b>m</b>ein <b>Z</b>ug? Das fragen sich Pendler und Reisende jeden Tag zu oft.  Die Planung wann man nochmal einen Kaffee trinken gehen, noch Erledigungen und Einkäufe tätigen kann oder sich lieber beeilen sollte, ist fast unmöglich. Wir hoffe sehr, dass wir dies mit <img class="" width="55px" src="https://wimz.de.cool/wp-content/uploads/2020/05/logo-2-e1588342746322.png" alt="Wimz?"/> gemeinsam wenigstens ein wenig eindämmen können und du deinen Tag schöner, effizienter und einfach besser gestalten kannst.
@@ -34,12 +30,6 @@ export default {
         Navigation,
         Header,
         Footer,
-    },
-
-    methods: {
-        handleClick(way) {
-            this.$router.push({name: way});
-        }
     },
 }
 </script>

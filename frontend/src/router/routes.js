@@ -6,6 +6,7 @@ import Imprint from '@/components/templates/Imprint';
 import Development from '@/components/templates/Development';
 import Privacy from '@/components/templates/Privacy';
 import Donate from '@/components/templates/Donate'
+import Contact from '@/components/templates/Contact'
 
 const routes = [
     {
@@ -47,6 +48,11 @@ const routes = [
         path: '/donate',
         name: 'donate',
         component: Donate,
+    },
+    {
+        path: '/contact',
+        name: 'contact',
+        component: Contact,
     },
 ];
 

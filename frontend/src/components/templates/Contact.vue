@@ -12,13 +12,13 @@ import Footer from '@/components/organisms/Footer';
 import Navigation from '@/components/organisms/Navigation';
 
 export default {
-    name: 'AboutUs',
+    name: 'Contact',
     
     components: {
         Header, 
         Footer,
         Navigation
-    },
+    },    
 }
 </script>
 
