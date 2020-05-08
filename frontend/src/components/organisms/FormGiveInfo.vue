@@ -1,8 +1,9 @@
 <template>
     <div class="container">
         <form 
-            class="row form-group" 
-            @submit.prevent="sendLocationAndTrain"
+              v-if="sendHelp === 0"
+              class="row form-group"
+              @submit.prevent="sendLocationAndTrain"
         >
             <label for="setTrainInput">Zug:</label>   
             <input
@@ -46,6 +47,12 @@
             </button>
             <location-handler v-if="userIsInTrain"/>
         </form>
+        <div v-else-if="sendHelp === 1">
+            <p> Vielen Dank für deine Hilfe! </p>
+        </div>
+        <div v-else>
+            <p> Das tut uns sehr leid. Da ist etwas in der Kommunikation schief gelaufen. Bitte versuche es einfach nochmal. </p>
+        </div>
     </div>
 </template>
 
@@ -57,10 +64,13 @@ import store from '@/store/store';
 
 export default {
     name: 'FormGiveInfo',
+
     store,
+
     components: {
         LocationHandler
     },
+
     data() {
         return {
             setTrainInputValue: '',
@@ -70,7 +80,12 @@ export default {
             setTrainComment: '',
             userIsInTrain: false,
             trainAndLocationResponse: '',
+            sendHelp: 0, //0 show form, 1 form send was successful, -1 server responded with error
         }
+    },
+
+    computed: {
+
     },
 
     methods: {
@@ -84,6 +99,11 @@ export default {
                 lat: this.$store.getters.currentLocation.lat || null,
                 lng: this.$store.getters.currentLocation.lng || null
             });
+            if(this.trainAndLocationResponse.status === "success") {
+                this.sendHelp = 1;
+            } else if (this.trainAndLocationResponse.status === "failed" || !this.trainAndLocationResponse) {
+                this.sendHelp = -1;
+            }
         },
     }
 }
