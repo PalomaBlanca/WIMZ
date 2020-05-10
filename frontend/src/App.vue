@@ -12,10 +12,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/css/utils.scss';
+@import '@/sass/utils.scss';
 html {
   background-color: $background-color;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0;
 }
 body {

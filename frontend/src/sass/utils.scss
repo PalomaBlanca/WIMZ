@@ -1,7 +1,10 @@
-@import './colors.scss';
+@import './abstract/variables.scss';
+
+@import './base/text.scss';
+
+@import './components/buttons.scss';
 
 @import './vendors/bootstrap.scss';
 
-@import './text.scss';
 
-@import './buttons.scss';
+// SASS structure from: https://itnext.io/structuring-your-sass-projects-c8d41fa55ed4
