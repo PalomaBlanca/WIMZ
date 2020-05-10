@@ -31,7 +31,7 @@ export default {
                 navigator.geolocation.getCurrentPosition(pos => {
                     data.showPosition(pos);
                 }, err => {
-                    reject(err);
+                   data.positionError(err)
                 });
 
             });
@@ -40,6 +40,13 @@ export default {
             this.currentLocation = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
+            };
+            this.$store.commit('setCurrentLocation', this.currentLocation);
+        },
+        positionError(error) {
+            this.currentLocation = {
+                lat: 0,
+                lng: 0,
             };
             this.$store.commit('setCurrentLocation', this.currentLocation)
         },

@@ -85,7 +85,12 @@ export default {
     },
 
     computed: {
-
+        checkUserGeoResponse() {
+            if(this.$store.getters.currentLocation.lat === 0 && this.$store.getters.currentLocation.lng === 0) {
+                this.userIsInTrain = false;
+            }
+            return this.userIsInTrain;
+        }
     },
 
     methods: {
@@ -95,7 +100,7 @@ export default {
                 name: this.setTrainInputValue,
                 targetStation: this.setTargetOfTrain,
                 comment: this.setTrainComment,
-                userIsInTrain: this.userIsInTrain,
+                userIsInTrain: this.checkUserGeoResponse,
                 lat: this.$store.getters.currentLocation.lat || null,
                 lng: this.$store.getters.currentLocation.lng || null
             });
