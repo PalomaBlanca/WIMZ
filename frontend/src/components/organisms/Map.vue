@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/css/utils.scss';
+@import '@/sass/utils.scss';
 .map {
   height: 300px;
   min-width: 320px;
