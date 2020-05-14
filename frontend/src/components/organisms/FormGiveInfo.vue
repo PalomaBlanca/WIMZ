@@ -45,20 +45,22 @@
                 </svg>
                 Meldung abschicken
             </button>
-            <location-handler v-if="userIsInTrain"/>
+            <location-handler
+                v-if="userIsInTrain"
+                @hasGeoAccessFromUser="hasGeoAccess"
+            />
         </form>
-        <div v-else-if="sendHelp === 1">
-            <p> Vielen Dank für deine Hilfe! </p>
-        </div>
-        <div v-else>
-            <p> Das tut uns sehr leid. Da ist etwas in der Kommunikation schief gelaufen. Bitte versuche es einfach nochmal. </p>
-        </div>
+        <form-response
+            v-else
+            :success-or-fail="sendHelp"
+        />
     </div>
 </template>
 
 <script>
 import LocationHandler from '@/components/molecules/LocationHandler';
 import trainAndLocation from '@/js/api/trainAndLocationApi';
+import FormResponse from '@/components/molecules/FormResponse'
 
 import store from '@/store/store';
 
@@ -68,7 +70,8 @@ export default {
     store,
 
     components: {
-        LocationHandler
+        LocationHandler,
+        FormResponse,
     },
 
     data() {
@@ -84,13 +87,8 @@ export default {
         }
     },
 
-    computed: {
-        checkUserGeoResponse() {
-            if(this.$store.getters.currentLocation.lat === 0 && this.$store.getters.currentLocation.lng === 0) {
-                this.userIsInTrain = false;
-            }
-            return this.userIsInTrain;
-        }
+    mounted() {
+        this.resetSendHelp();
     },
 
     methods: {
@@ -110,7 +108,16 @@ export default {
                 this.sendHelp = -1;
             }
         },
-    }
+
+        resetSendHelp() {
+            this.sendHelp = 0;
+        },
+
+        hasGeoAccess(geolocationPositionError) {
+            console.log(geolocationPositionError)
+            geolocationPositionError.code === 1 ? this.userIsInTrain = false : this.userIsInTrain = true;
+        }
+    },
 }
 </script>
 

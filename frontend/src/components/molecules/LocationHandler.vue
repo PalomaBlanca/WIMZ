@@ -44,11 +44,7 @@ export default {
             this.$store.commit('setCurrentLocation', this.currentLocation);
         },
         positionError(error) {
-            this.currentLocation = {
-                lat: 0,
-                lng: 0,
-            };
-            this.$store.commit('setCurrentLocation', this.currentLocation)
+            this.$emit('hasGeoAccessFromUser', error);
         },
     }
        
