@@ -1,13 +1,13 @@
 // basic fonts with weight and style
 
 @mixin typo-bold {
-    font-family: Consolas, "Lucida Console", Menlo, monospace
+    font-family: Consolas, "Lucida Console", Menlo, monospace;
     font-weight: normal;
     font-style: normal;
 }
 
 @mixin typo-italic {
-    font-family: Consolas, "Lucida Console", Menlo, monospace
+    font-family: Consolas, "Lucida Console", Menlo, monospace;
     font-weight: normal;
     font-style: italic;
 }
@@ -19,7 +19,7 @@
 }
 
 @mixin typo-light {
-    font-family: Consolas, "Lucida Console", Menlo, monospace
+    font-family: Consolas, "Lucida Console", Menlo, monospace;
     font-weight: 300;
     font-style: normal;
 }

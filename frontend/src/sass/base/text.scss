@@ -1,19 +1,27 @@
-h5,
-h6,
+@import "../abstract/mixins";
+
 p,
 a,
 label,
 input,
 button,
 textarea {
-    font-family:  Consolas, "Lucida Console", Menlo, monospace
+    @include typo-regular;
 }
 
 label {
-    font-weight: bold;
+    @include typo-bold;
 }
 
 .text-wrapper{
     padding: 30px;
     padding-top: 50px;
+}
+
+h5 {
+  @include typo-h5;
+}
+
+h6 {
+  @include typo-h6;
 }
