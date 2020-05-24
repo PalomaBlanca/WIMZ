@@ -2,7 +2,7 @@
 
 @mixin typo-bold {
     font-family: Consolas, "Lucida Console", Menlo, monospace;
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
 }
 
@@ -14,7 +14,7 @@
 
 @mixin typo-bold-italic {
     font-family: Consolas, "Lucida Console", Menlo, monospace;
-    font-weight: normal;
+    font-weight: bold;
     font-style: italic;
 }
 

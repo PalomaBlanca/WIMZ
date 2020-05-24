@@ -1,11 +1,11 @@
+@import './grid/index.scss';
+
 @import './abstract/variables.scss';
 
 @import './base/text.scss';
 
 @import './components/buttons.scss';
 
-@import './vendors/bootstrap.scss';
-
-@import './abstract/mixins.scss'
+@import './abstract/mixins.scss';
 
 // SASS structure from: https://itnext.io/structuring-your-sass-projects-c8d41fa55ed4
