@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../css/utils.scss';
+@import '@/sass/utils.scss';
 
 .input-wrapper {
     padding-bottom: 20px;

@@ -1,8 +1,9 @@
 <template>
     <div class="container">
         <form 
-            class="row form-group" 
-            @submit.prevent="sendLocationAndTrain"
+              v-if="sendHelp === 0"
+              class="row form-group"
+              @submit.prevent="sendLocationAndTrain"
         >
             <label for="setTrainInput">Zug:</label>   
             <input
@@ -44,23 +45,35 @@
                 </svg>
                 Meldung abschicken
             </button>
-            <location-handler v-if="userIsInTrain"/>
+            <location-handler
+                v-if="userIsInTrain"
+                @hasGeoAccessFromUser="hasGeoAccess"
+            />
         </form>
+        <form-response
+            v-else
+            :success-or-fail="sendHelp"
+        />
     </div>
 </template>
 
 <script>
 import LocationHandler from '@/components/molecules/LocationHandler';
 import trainAndLocation from '@/js/api/trainAndLocationApi';
+import FormResponse from '@/components/molecules/FormResponse'
 
 import store from '@/store/store';
 
 export default {
     name: 'FormGiveInfo',
+
     store,
+
     components: {
-        LocationHandler
+        LocationHandler,
+        FormResponse,
     },
+
     data() {
         return {
             setTrainInputValue: '',
@@ -70,7 +83,12 @@ export default {
             setTrainComment: '',
             userIsInTrain: false,
             trainAndLocationResponse: '',
+            sendHelp: 0, //0 show form, 1 form send was successful, -1 server responded with error
         }
+    },
+
+    mounted() {
+        this.resetSendHelp();
     },
 
     methods: {
@@ -80,17 +98,31 @@ export default {
                 name: this.setTrainInputValue,
                 targetStation: this.setTargetOfTrain,
                 comment: this.setTrainComment,
-                userIsInTrain: this.userIsInTrain,
+                userIsInTrain: this.checkUserGeoResponse,
                 lat: this.$store.getters.currentLocation.lat || null,
                 lng: this.$store.getters.currentLocation.lng || null
             });
+            if(this.trainAndLocationResponse.status === "success") {
+                this.sendHelp = 1;
+            } else if (this.trainAndLocationResponse.status === "failed" || !this.trainAndLocationResponse) {
+                this.sendHelp = -1;
+            }
         },
-    }
+
+        resetSendHelp() {
+            this.sendHelp = 0;
+        },
+
+        hasGeoAccess(geolocationPositionError) {
+            console.log(geolocationPositionError)
+            geolocationPositionError.code === 1 ? this.userIsInTrain = false : this.userIsInTrain = true;
+        }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/css/utils.scss';
+@import '@/sass/utils.scss';
 
 .container {
     border: 2px dashed $border-color;

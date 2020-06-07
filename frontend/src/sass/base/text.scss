@@ -1,0 +1,27 @@
+@import "../abstract/mixins";
+
+p,
+a,
+label,
+input,
+textarea {
+    @include typo-regular;
+}
+
+label,
+button {
+    @include typo-bold;
+}
+
+.text-wrapper{
+    padding: 30px;
+    padding-top: 50px;
+}
+
+h5 {
+  @include typo-h5;
+}
+
+h6 {
+  @include typo-h6;
+}

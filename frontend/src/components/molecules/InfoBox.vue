@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/css/utils.scss';
+@import '@/sass/utils.scss';
 
 h5 {
     color: white;

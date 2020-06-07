@@ -40,5 +40,3 @@ import VueTypes from 'vue-types';
         }
     }
 </script>
-<style lang="scss" scoped>
-</style>

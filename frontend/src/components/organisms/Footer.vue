@@ -22,7 +22,7 @@
                 </a><br/>
                 <a
                     @click.prevent="handleClick('about-us')"
-                > 
+                >
                     <svg class="bi bi-building" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M15.285.089A.5.5 0 0115.5.5v15a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5V14h-1v1.5a.5.5 0 01-.5.5H1a.5.5 0 01-.5-.5v-6a.5.5 0 01.418-.493l5.582-.93V3.5a.5.5 0 01.324-.468l8-3a.5.5 0 01.46.057zM7.5 3.846V8.5a.5.5 0 01-.418.493l-5.582.93V15h8v-1.5a.5.5 0 01.5-.5h2a.5.5 0 01.5.5V15h2V1.222l-7 2.624z" clip-rule="evenodd"/>
                         <path fill-rule="evenodd" d="M6.5 15.5v-7h1v7h-1z" clip-rule="evenodd"/>
@@ -82,10 +82,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/css/utils.scss';
+@import '@/sass/utils.scss';
+
 hr {
     border: 2px dashed;
 }
+
 a  {
     cursor: pointer;
 }

@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/css/utils.scss';
+@import '@/sass/utils.scss';
 .form-item{
     margin-top: 30px;
     margin-right: 15px;

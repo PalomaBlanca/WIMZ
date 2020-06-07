@@ -1,0 +1,28 @@
+button {
+    min-height: 55px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn {
+
+   &-danger {
+     background-color: $danger-color;
+     color: white;
+   }
+
+   &-success {
+     background-color: $success-color;
+     color: white;
+   }
+
+   &-info {
+     background-color: $info-color;
+     color: white;
+   }
+
+   &-warning {
+     background-color: $warning-color;
+     color: white;
+   }
+}
