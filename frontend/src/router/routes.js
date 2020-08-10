@@ -5,14 +5,20 @@ import StartPage from '@/components/templates/StartPage'
 import Imprint from '@/components/templates/Imprint';
 import Development from '@/components/templates/Development';
 import Privacy from '@/components/templates/Privacy';
-import Donate from '@/components/templates/Donate'
-import Contact from '@/components/templates/Contact'
+import Donate from '@/components/templates/Donate';
+import Contact from '@/components/templates/Contact';
+import ACStartpage from '@/components/templates/ACStartpage';
 
 const routes = [
     {
         path: '/',
         name: 'start',
         component: StartPage,
+    },
+    {
+        path: '/ACStart',
+        name: 'acstart',
+        component: ACStartpage,
     },
     {
         path: '/info',

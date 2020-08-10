@@ -1,31 +1,32 @@
 // basic fonts with weight and style
+@import url('https://fonts.googleapis.com/css?family=Londrina+Solid');
 
 @mixin typo-bold {
-    font-family: Consolas, "Lucida Console", Menlo, monospace;
+    font-family: 'Londrina Solid', Arial, sans-serif;
     font-weight: bold;
     font-style: normal;
 }
 
 @mixin typo-italic {
-    font-family: Consolas, "Lucida Console", Menlo, monospace;
+    font-family: 'Londrina Solid', Arial, sans-serif;
     font-weight: normal;
     font-style: italic;
 }
 
 @mixin typo-bold-italic {
-    font-family: Consolas, "Lucida Console", Menlo, monospace;
+    font-family: 'Londrina Solid', Arial, sans-serif;
     font-weight: bold;
     font-style: italic;
 }
 
 @mixin typo-light {
-    font-family: Consolas, "Lucida Console", Menlo, monospace;
+    font-family: 'Londrina Solid', Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
 }
 
 @mixin typo-regular {
-    font-family: Consolas, "Lucida Console", Menlo, monospace;
+    font-family: 'Londrina Solid', Arial, sans-serif;
     line-height: 1.5;
     font-weight: normal;
     font-style: normal;

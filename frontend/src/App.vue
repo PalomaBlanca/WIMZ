@@ -14,11 +14,11 @@ export default {
 <style lang="scss">
 @import '@/sass/utils.scss';
 html {
-  background-color: $background-color;
+  //background-color: $background-color;
   padding: 0;
 }
 body {
   margin: 0;
-  background-color: $background-color;
+  background-color: $main-blue;
 }
 </style>
