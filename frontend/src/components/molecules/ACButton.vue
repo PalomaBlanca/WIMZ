@@ -19,11 +19,10 @@ export default {
 .button {
   background-color: $main-white;
   min-height: 100px;
-  min-width: 100px;
+  width: 100%;
   border: none;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
-
 }
 
 .buttonLeft {
@@ -33,7 +32,4 @@ export default {
   border-bottom-right-radius: 100px;
 }
 
-.buttonRight {
-
-}
 </style>

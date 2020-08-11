@@ -1,7 +1,15 @@
 <template>
   <div>
-
-
+    <ACHeader/>
+  <div class="startText container">
+    <div class="row">
+      <div class="col-12 startText__col">
+        <p>Hi! Willkommen bei wimz?</p>
+        <p>Möchtest du eine Meldung abgeben oder lieber eine Information erhalten?</p>
+        <i class="fas fa-arrows-alt-h startText__choice-icon"></i>
+      </div>
+    </div>
+  </div>
   <div class="navigation-choice container">
     <div class="row">
       <div class="col-12 navigation-choice__col">
@@ -11,10 +19,7 @@
             class="giveInfoButton"
             @click="handleClick('give-info')"
         >
-          <svg width="50%" height="50%" viewBox="0 0 16 16" class="bi bi-exclamation-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-          </svg>
+          <i class="fas fa-bullhorn"></i>
         </ACButton>
 
         <ACButton
@@ -23,9 +28,7 @@
             class="getInfoButton"
             @click="handleClick('get-info')"
         >
-          <svg width="50%" height="50%" viewBox="0 0 16 16" class="bi bi-cursor" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
-          </svg>
+          <i class="fas fa-search-location"></i>
         </ACButton>
       </div>
     </div>
@@ -33,8 +36,19 @@
   <div class="introText container">
     <div class="row">
       <div class="col-12">
-        Hi! Willkommen bei wimz?
-        Dadurch, dass du wimz? nutzt können wir den öffentlichen Personennahverkehr planbar machen. Durch die Community von wimz? und der Regel jeder hilft jedem, können wir wertvolle Informationen teilen und uns unnötiges "Gewarte" oder "Gerenne" sparen.
+        <i class="fas fa-route introText__route-icon"></i>
+        <p>Dadurch, dass du wimz? nutzt können wir den öffentlichen Personennahverkehr planbar machen. Durch die Community von wimz? und der Regel jeder hilft jedem, können wir wertvolle Informationen teilen und uns unnötiges "Gewarte" oder "Gerenne" sparen.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="textWhite container">
+    <div class="row">
+      <div class="col-12">
+        <i class="fas fa-heart textWhite__broken-heart-icon"></i>
+        <p> Damit wir alle unsere Ziele erreichen, müssen wir ankommen. Dabei möchte man nicht auf jedemanden warten müssen und sich verspäten. Denn durch verpasste Züge zerbrechen Herzen und Freundschaften, zerplatzen Vorstellungsgespräche und wichtige Termine und steigern insgesamt die Negativität. Dafür benötigt man eine verlässliche Informationsquelle, damit der Zug ein zuverlässiges Fortbewegungsmittel ist.
+        </p>
       </div>
     </div>
   </div>
@@ -42,19 +56,15 @@
 </template>
 
 <script>
-import Navigation from '@/components/organisms/Navigation';
-import Header from '@/components/organisms/Header';
-import Footer from '@/components/organisms/Footer';
 import ACButton from '@/components/molecules/ACButton';
+import ACHeader from '@/components/organisms/ACHeader';
 
 export default {
     name: 'ACStartPage',
 
     components:  {
-        Navigation,
-        Header,
-        Footer,
         ACButton,
+        ACHeader,
     },
 }
 </script>
@@ -62,33 +72,75 @@ export default {
 <style lang="scss" scoped>
 @import '@/sass/utils.scss';
 
-.introText {
-  @include typo-body;
-  color: $main-white;
+.startText {
+  @include typo-body-filled;
+  color: $main-blue;
+  background-color: $main-white;
+
+  &__choice-icon {
+    font-size: 100px;
+    color: $superlight-blue;
+    width: 100%;
+    text-align: center;
+  }
 }
 
+
+.introText {
+  @include typo-body-filled;
+  @include module-bottom-space;
+
+  color: $main-white;
+
+  &__route-icon {
+    font-size: 120px;
+    color: $main-white;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.textWhite {
+  @include typo-body-filled;
+  @include module-bottom-space;
+  padding-top: 100px;
+  color: $main-blue;
+  background-color: $main-white;
+
+  &__broken-heart-icon {
+    font-size: 120px;
+    color: $main-blue;
+    width: 100%;
+    text-align: center;
+  }
+}
 .navigation-choice {
+  @include module-bottom-space;
+
   &__col {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: $main-white;
+    padding-bottom: 50px;
   }
 }
 
 .giveInfoButton {
-    margin-left: -15px;
-    margin-right: 25px;
-    svg {
-      color: $main-blue;
-    }
+  margin-left: -15px;
+  margin-right: 25px;
+  color: $main-white;
+  background-color: $main-blue;
+  font-size: 40px;
 }
 .getInfoButton {
   margin-right: -15px;
   margin-left: 25px;
-  svg {
-    color: $main-blue;
-  }
+  color: $main-white;
+  background-color: $main-blue;
+  font-size: 40px;
 }
+
 body {
   background-color: $main-blue;
 }

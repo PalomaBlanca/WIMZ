@@ -1,13 +1,5 @@
 @import "../abstract/mixins";
 
-p,
-a,
-label,
-input,
-textarea {
-    @include typo-regular;
-}
-
 label,
 button {
     @include typo-bold;
