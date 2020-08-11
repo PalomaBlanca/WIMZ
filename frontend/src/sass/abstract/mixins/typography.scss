@@ -1,5 +1,7 @@
 // basic fonts with weight and style
 @import url('https://fonts.googleapis.com/css?family=Londrina+Solid');
+@import url('https://fonts.googleapis.com/css?family=Londrina+Shadow');
+@import url('https://fonts.googleapis.com/css?family=Londrina+Outline');
 
 @mixin typo-bold {
     font-family: 'Londrina Solid', Arial, sans-serif;
@@ -26,7 +28,7 @@
 }
 
 @mixin typo-regular {
-    font-family: 'Londrina Solid', Arial, sans-serif;
+    font-family: 'Londrina Outline', Arial, sans-serif;
     line-height: 1.5;
     font-weight: normal;
     font-style: normal;
