@@ -17,7 +17,7 @@
             <ACButton
                 type="button"
                 class="giveInfoButton"
-                @click="handleClick('give-info')"
+                @click.native="handleClick('share-love')"
             >
               <i class="fas fa-bullhorn"></i>
             </ACButton>
@@ -25,7 +25,7 @@
             <ACButton
                 type="button"
                 class="getInfoButton"
-                @click="handleClick('get-info')"
+                @click.native="handleClick('get-love')"
             >
               <i class="fas fa-search-location"></i>
             </ACButton>
@@ -79,7 +79,7 @@ export default {
     methods: {
       handleClick: function(route) {
         console.log(route);
-        router.push(route);
+        this.$router.push(route);
       }
     }
 }
@@ -129,7 +129,9 @@ export default {
 }
 .navigation-choice {
   @include module-bottom-space;
+  background-color: transparent;
   z-index: 1;
+  position: relative;
 
   &__col {
     display: flex;
@@ -140,13 +142,14 @@ export default {
 
 .giveInfoButton,
 .getInfoButton {
-  color: $button-color;
+  position: relative;
   background-color: $main-blue;
+  color: $button-color;
   font-size: 40px;
   padding: 20px;
   border: none;
   background: linear-gradient(-45deg, rgba(0,0,0,0.1), rgba(255,255,255,0.1));
-    box-shadow: 7px 10px 20px 4px rgba(0, 0, 0, 0.4), -8px -8px 20px 7px rgba(255, 255, 255, 0.15);
+  box-shadow: 7px 10px 20px 4px rgba(0, 0, 0, 0.4), -8px -8px 20px 7px rgba(255, 255, 255, 0.15);
   height: 100px;
   width: 100px;
 
@@ -173,8 +176,8 @@ body {
 }
 
 .spacer {
-  margin-top: -100px;
-  margin-bottom: -100px;
+  margin-top: -50px;
+  margin-bottom: -150px;
   z-index: -1;
 }
 </style>

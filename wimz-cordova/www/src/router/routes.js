@@ -8,6 +8,9 @@ import Privacy from '@/components/templates/Privacy';
 import Donate from '@/components/templates/Donate';
 import Contact from '@/components/templates/Contact';
 import ACStartpage from '@/components/templates/ACStartpage';
+import ACGiveInfo from '@/components/templates/ACGiveInfo';
+import ACGetInfo from '@/components/templates/ACGetInfo';
+
 
 const routes = [
     {
@@ -29,6 +32,16 @@ const routes = [
         path: '/train',
         name: 'get-info',
         component: GetInfo,
+    },
+    {
+        path: '/share-love',
+        name: 'share-love',
+        component: ACGiveInfo,
+    },
+    {
+        path: '/get-love',
+        name: 'get-love',
+        component: ACGetInfo,
     },
     {
         path: '/about-us',
