@@ -34,7 +34,7 @@ export default {
 @import '@/sass/utils.scss';
 
 .header {
-  height: 60px;
+  height: $header-height-mobile;
   background-color: $main-blue;
   display: flex;
   align-items: center;
