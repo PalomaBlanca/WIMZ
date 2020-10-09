@@ -1,7 +1,7 @@
 import api from './index.js';
 
 export default async function(id, date) {
-
+  // weitere mögliche API ist: https://reiseauskunft.bahn.de/bin/ajax-getstop.exe/dn?REQ0JourneyStopsS0A=7&REQ0JourneyStopsB=12&REQ0JourneyStopsS0G= ${nutzereingabe}
   //Production:
   const authCodeDB = 'Bearer c68677c4eecf7984eae7f11a61781445';
   //Sandbox

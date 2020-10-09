@@ -7,21 +7,22 @@
           Ziel:
         </label>
         <ACAutocomplete
-          :items="DBStationsResponse"
+          :listData="DBStationsResponse"
           @newInput="sendSearchString"
           @setChoice="setTargetOfInput"
+          :isAsync="true"
         />
 
         <label for="setTrainInput">
           Zug:
         </label>
         <ACAutocomplete
-          :items="allArrivingTrains"
+          :listData="allArrivingTrains"
           @newInput=""
           @setChoice="setTrainOfInput"
           :isAsync="false"
         />
-        
+
         <label for="comment">Zusätliche Infos:</label>
         <textarea class="col-12 form-control" id="comment" rows="6" v-model="setTrainComment"></textarea>
 
@@ -81,7 +82,10 @@ export default {
 
     methods: {
       async sendSearchString(query) {
-        this.DBStationsResponse = await DBStationsApi(query);
+        console.log(query);
+        if(query.length > 2) {
+          this.DBStationsResponse = await DBStationsApi(query);
+        }
       },
 
       async checkTrainByTarget(id) {
