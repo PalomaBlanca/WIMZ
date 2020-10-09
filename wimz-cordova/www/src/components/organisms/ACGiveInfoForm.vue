@@ -1,24 +1,27 @@
 <template>
   <div>
     <form
-          @submit.prevent="sendLocationAndTrain"
+          @submit.prevent="sendSearchString"
     >
-        <label for="setTrainInput">Zug:</label>
-        <input
-            id="setTrainInput"
-            type="text"
-            aria-describedby="whichTrain"
-            placeholder="Welcher Zug? (z.B. RE8)"
-            v-model="setTrainInputValue"
+        <label for="setTargetOfTrainInput">
+          Ziel:
+        </label>
+        <ACAutocomplete
+          :items="DBStationsResponse"
+          @newInput="sendSearchString"
+          @setChoice="setTargetOfInput"
         />
-        <label for="setTargetOfTrainInput">Ziel:</label>
-        <input
-            id="setTargetOfTrainInput"
-            type="text"
-            aria-describedby="targetOfrain"
-            placeholder="Wohin fährt der Zug?"
-            v-model="setTargetOfTrain"
+
+        <label for="setTrainInput">
+          Zug:
+        </label>
+        <ACAutocomplete
+          :items="allArrivingTrains"
+          @newInput=""
+          @setChoice="setTrainOfInput"
+          :isAsync="false"
         />
+        
         <label for="comment">Zusätliche Infos:</label>
         <textarea class="col-12 form-control" id="comment" rows="6" v-model="setTrainComment"></textarea>
 
@@ -33,36 +36,72 @@
 </template>
 <script>
 import VueTypes from 'vue-types';
-import trainAndLocation from '@/js/api/trainAndLocationApi';
-
+import DBStationsApi from '@/js/api/getDBStations';
+import DBStationArrivalBoard from '@/js/api/getDBStationArrivalBoard';
+import ACAutocomplete from '@/components/molecules/ACAutocomplete';
+/*
+*
+* Checken wenn der Nutzer seine Eingabe mit I oder EC beginnt Vorschlagliste aus API Call nehmen
+* Ansonsten jede Eingabe akzeptieren, da RE (Nahverkehr) wohl noch nicht unterstützt wird vom DB arrivalBoard
+*
+*/
 export default {
     name: 'ACGiveInfoForm',
+
+    components: {
+      ACAutocomplete,
+    },
 
     data() {
       return {
         setTrainComment: "",
-        setTrainInputValue: "",
+        setTrain: "",
         setTargetOfTrain: "",
-        trainAndLocationResponse: ""
+        DBStationsResponse: [],
+        DBStationArrivalBoard: [],
+        trainInputIsDisabled: true,
+      }
+    },
+
+    computed: {
+      allArrivingTrains() {
+        var filteredTrainList = new Array();
+        this.DBStationArrivalBoard.forEach((item) => {
+            filteredTrainList.push(
+              {
+                name: item.name,
+                id: item.detailsId
+              }
+            )
+        });
+        console.log(filteredTrainList);
+        return filteredTrainList;
       }
     },
 
     methods: {
-      async sendLocationAndTrain() {
-          this.trainAndLocationResponse =
-          await trainAndLocation({
-              name: this.setTrainInputValue,
-              targetStation: this.setTargetOfTrain,
-              comment: this.setTrainComment,
-              lat: this.$store.getters.currentLocation.lat || null,
-              lng: this.$store.getters.currentLocation.lng || null
-          });
-          if(this.trainAndLocationResponse.status === "success") {
-              this.sendHelp = 1;
-          } else if (this.trainAndLocationResponse.status === "failed" || !this.trainAndLocationResponse) {
-              this.sendHelp = -1;
-          }
+      async sendSearchString(query) {
+        this.DBStationsResponse = await DBStationsApi(query);
       },
+
+      async checkTrainByTarget(id) {
+        var date = new Date();
+        var dd = String(date.getDate()).padStart(2, '0');
+        var mm = String(date.getMonth() + 1).padStart(2, '0');
+        var yyyy = date.getFullYear();
+        date = yyyy + '-' + mm + '-' + dd;
+        this.DBStationArrivalBoard = await DBStationArrivalBoard(id, date);
+      },
+
+      setTargetOfInput(target) {
+        this.setTargetOfTrain = target;
+        this.checkTrainByTarget(target.id);
+        this.trainInputIsDisabled = false;
+      },
+
+      setTrainOfInput(train) {
+        this.setTrain = train;
+      }
     }
 }
 </script>

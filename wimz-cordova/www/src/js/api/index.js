@@ -1,15 +1,28 @@
 import axios from 'axios';
 import { isProductionEnvironment } from '../../js/env.js';
 
-export default async function(route) {
+export default async function(route, externalUrl, getParamsString, authCodeDB) {
   // Create a new axios instance with some default settings
+
+  var url = `/api/${route}/index.php`;
+
+  console.log("is PROD:", isProductionEnvironment);
+
+  if(externalUrl) {
+    url = `${externalUrl}`;
+  }
+
   const api = axios.create({
-    baseURL: `/api/${route}/index.php`,
+    baseURL: url,
     // timeout: 1000,
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
+      'Authorization': authCodeDB,
     },
     transformRequest(data) {
+      if(route === "DBStations") {
+
+      }
       return JSON.stringify({
         data: JSON.stringify(data),
       });

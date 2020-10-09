@@ -60,7 +60,6 @@ export default {
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-                        console.log(payLoad);
                         this.lat = payLoad.lat;
                         this.lng = payLoad.lng;
                         this.loading = false;
