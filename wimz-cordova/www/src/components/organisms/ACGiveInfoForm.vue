@@ -1,14 +1,14 @@
 <template>
   <div>
     <form
-          @submit.prevent="sendSearchString"
+          @submit.prevent="sendLocationAndTrain"
     >
         <label for="setTargetOfTrainInput">
           Ziel:
         </label>
         <ACAutocomplete
           :listData="DBStationsResponse"
-          @newInput="sendSearchString"
+          @newInput="inputStationHandler"
           @setChoice="setTargetOfInput"
           :isAsync="true"
         />
@@ -39,7 +39,9 @@
 import VueTypes from 'vue-types';
 import DBStationsApi from '@/js/api/getDBStations';
 import DBStationArrivalBoard from '@/js/api/getDBStationArrivalBoard';
+import trainAndLocation from '@/js/api/trainAndLocationApi';
 import ACAutocomplete from '@/components/molecules/ACAutocomplete';
+import { debounce } from 'debounce';
 /*
 *
 * Checken wenn der Nutzer seine Eingabe mit I oder EC beginnt Vorschlagliste aus API Call nehmen
@@ -75,14 +77,28 @@ export default {
               }
             )
         });
-        console.log(filteredTrainList);
         return filteredTrainList;
       }
     },
 
     methods: {
-      async sendSearchString(query) {
-        console.log(query);
+
+      inputStationHandler: debounce(function(query) {
+          this.sendStationSearch(query);
+      }, 300),
+
+      async sendLocationAndTrain() {
+          this.trainAndLocationResponse =
+          await trainAndLocation({
+              name: this.setTrain,
+              targetStation: this.setTargetOfTrain,
+              comment: this.setTrainComment,
+              lat: this.$store.getters.currentLocation.lat || null,
+              lng: this.$store.getters.currentLocation.lng || null
+          });
+      },
+
+      async sendStationSearch(query) {
         if(query.length > 2) {
           this.DBStationsResponse = await DBStationsApi(query);
         }

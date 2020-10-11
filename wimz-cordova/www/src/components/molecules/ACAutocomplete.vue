@@ -111,13 +111,12 @@
     },
     watch: {
       listData: function (val, oldValue) {
-        console.log(val, oldValue);
+        console.log("CHECK EQUALITY", val, oldValue);
         // actually compare them
-        if (JSON.stringify(val) !== JSON.stringify(oldValue)) {
-          console.log("not equal");
+        //if (JSON.stringify(val) !== JSON.stringify(oldValue)) {
           this.results = val;
           this.isLoading = false;
-        }
+
       },
     },
     mounted() {
@@ -157,118 +156,3 @@
   }
 
 </style>
-
-
-
-
-<!-- <template>
-  <div class="autocomplete">
-    <input
-      type="text"
-      v-model="userInput"
-      @input="onChange"
-    />
-    <ul
-      v-show="isOpen"
-      class="autocomplete-results"
-    >
-      <li
-        class="loading"
-        v-if="isLoading"
-      >
-        Lade...
-        düdülü :)
-      </li>
-      <li
-        v-else
-        v-for="(item) in items"
-        :key="item.id"
-        @click="setResult(item)"
-        class="autocomplete-result"
-      >
-        {{ item.name }}
-      </li>
-    </ul>
-  </div>
-</template>
-
-<script>
-  import Fuse from 'fuse.js';
-  export default {
-
-    name: 'ACAutocomplete',
-
-    data() {
-      return {
-        userInput: '',
-        isOpen: false,
-        isLoading: true,
-        fuseSearch: '',
-        items: '',
-      };
-    },
-
-    props: {
-      listData: {
-        type: Array,
-        default: [],
-      },
-      isAsync: {
-        type: Boolean,
-        default: true,
-      }
-    },
-
-    methods: {
-      onChange() {
-        console.log(this.isAsync);
-        if(this.userInput.length > 2) {
-          this.$emit('newInput', this.userInput);
-          this.isOpen = true;
-          if(this.items.length > 0) this.isLoading = false;
-        } else {
-          this.isOpen = false;
-        }
-        // Is the data given by an outside ajax request?
-        if (this.isAsync) {
-          this.isLoading = true;
-        } else {
-          this.isOpen = true;
-          this.items = this.fuseSearch.search(this.userInput);
-        }
-
-      },
-      setResult(item) {
-        this.userInput = item.name;
-        this.$emit('setChoice', item)
-        this.isOpen = false;
-      },
-    },
-
-    handleClickOutside(evt) {
-      if (!this.$el.contains(evt.target)) {
-        this.isOpen = false;
-      }
-    },
-
-    mounted() {
-      this.fuseSearch = new Fuse(this.listData, {
-        keys: ['name']
-      });
-
-      document.addEventListener('click', this.handleClickOutside)
-    },
-
-    destroyed() {
-      document.removeEventListener('click', this.handleClickOutside)
-    },
-
-    watch: {
-      listData(newValue) {
-        if (newValue) {
-          this.isLoading = false;
-        }
-      }
-    },
-  };
-</script> -->
