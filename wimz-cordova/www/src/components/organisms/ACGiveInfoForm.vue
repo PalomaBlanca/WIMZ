@@ -1,37 +1,43 @@
 <template>
   <div class="col-12">
     <form
+          class="row"
           @submit.prevent="sendLocationAndTrain"
     >
-        <label for="setTargetOfTrainInput">
-          Start:
-        </label>
-        <ACAutocomplete
-          :listData="DBStartStationsResponse"
-          @newInput="inputStartStationHandler"
-          @setChoice="setStartOfInput"
-          :isAsync="true"
-        />
+        <div class="input-wrapper col-12 col-md-4">
+          <i class="fa fa-map-marker icon map-marker"></i>
+          <ACAutocomplete
+            :listData="DBStartStationsResponse"
+            @newInput="inputStartStationHandler"
+            @setChoice="setStartOfInput"
+            :isAsync="true"
+            placeholder="Start"
+            class="start-input"
+          />
+        </div>
 
-        <label for="setTargetOfTrainInput">
-          Ziel:
-        </label>
-        <ACAutocomplete
-          :listData="DBTargetStationsResponse"
-          @newInput="inputTargetStationHandler"
-          @setChoice="setTargetOfInput"
-          :isAsync="true"
-        />
+        <div class="input-wrapper col-12 col-md-4">
+          <i class="fa fa-map-marker icon map-marker"></i>
+          <ACAutocomplete
+            :listData="DBTargetStationsResponse"
+            @newInput="inputTargetStationHandler"
+            @setChoice="setTargetOfInput"
+            :isAsync="true"
+            placeholder="Ziel"
+          />
+        </div>
 
-        <label for="setTargetOfTrainInput">
-          Datum & Zeit:
-        </label>
-        <ACDateTimePicker
-        />
 
-        <label for="comment">Zusätliche Infos:</label>
-        <textarea class="col-12 form-control" id="comment" rows="6" v-model="setTrainComment"></textarea>
 
+        <div class="input-wrapper col-12 col-md-4">
+          <i class="fa fa-calendar icon calender-icon"></i>
+          <ACDateTimePicker/>
+        </div>
+
+        <div class="input-wrapper col-12">
+          <label for="comment">Zusätliche Infos:</label>
+          <textarea class="form-control" id="comment" rows="6" v-model="setTrainComment"></textarea>
+        </div>
         <button
             type="submit"
             class="col-12 btn btn-danger"
@@ -124,6 +130,42 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '@/sass/utils.scss';
+
+.map-marker,
+.calender-icon {
+  position: absolute;
+  font-size: 15px;
+  color: $main-orange;
+  z-index: 1;
+  left: 30px;
+  top: 16px;
+}
+
+.start-input {
+  z-index: 0;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  @include typo-body;
+  font-size: 14px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: $main-white;
+  height: 150px;
+  width: 100%;
+  border: none;
+  background-color: $main-blue;
+  box-shadow: inset 5px 6px 8px -2px rgba(0, 0, 0, 0.6),
+              inset -4px -5px 10px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+}
 
 
 </style>

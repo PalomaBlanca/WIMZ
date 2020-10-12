@@ -8,6 +8,7 @@
       @keydown.down="onArrowDown"
       @keydown.up="onArrowUp"
       @keydown.enter="onEnter"
+      :placeholder="placeholder"
     />
     <ul
       id="autocomplete-results"
@@ -49,6 +50,10 @@
         required: false,
         default: false,
       },
+      placeholder: {
+        type: String,
+        default: "",
+      }
     },
 
     data() {
@@ -129,14 +134,32 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/sass/utils.scss';
+
   .autocomplete {
     position: relative;
     width: 100%;
   }
 
   .input-autocomplete {
+    @include typo-regular-filled;
+    font-size: 14px;
+    padding-left: 35px;
+    padding-right: 15px;
+    color: $main-white;
+    height: 40px;
     width: 100%;
+    border: none;
+    background-color: $main-blue;
+    box-shadow: inset 5px 6px 8px -2px rgba(0, 0, 0, 0.6),
+                inset -4px -5px 10px 0 rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+
+    &::placeholder {
+      color: $main-white;
+      opacity: 0.6;
+    }
   }
 
   .autocomplete-results {
