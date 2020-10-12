@@ -1,15 +1,19 @@
 <template>
-  <div class="card-box">
+  <ACButton class="card-box">
     <span>{{startStation}}</span>
     <span>{{targetStation}}</span>
     <span>{{startTime}}</span>
     <span>{{departure}}</span>
-  </div>
+  </ACButton>
 </template>
 <script>
 import VueTypes from 'vue-types'
+import ACButton from '@/components/molecules/ACButton';
 export default {
     name: 'ACJourneyCard',
+    components: {
+      ACButton,
+    },
     props: {
       startStation: VueTypes.string.required,
       targetStation: VueTypes.string.required,
@@ -24,10 +28,10 @@ export default {
 
 .card-box {
   border-radius: 15px;
-  background-color: $main-orange;
   color: $main-white;
-  min-height: 150px;
   padding: 10px;
+  height: 150px;
+  margin-bottom: 20px;
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-12">
     <form
           @submit.prevent="sendLocationAndTrain"
     >
@@ -7,8 +7,8 @@
           Start:
         </label>
         <ACAutocomplete
-          :listData="DBStationsResponse"
-          @newInput="inputStationHandler"
+          :listData="DBStartStationsResponse"
+          @newInput="inputStartStationHandler"
           @setChoice="setStartOfInput"
           :isAsync="true"
         />
@@ -17,10 +17,16 @@
           Ziel:
         </label>
         <ACAutocomplete
-          :listData="DBStationsResponse"
-          @newInput="inputStationHandler"
+          :listData="DBTargetStationsResponse"
+          @newInput="inputTargetStationHandler"
           @setChoice="setTargetOfInput"
           :isAsync="true"
+        />
+
+        <label for="setTargetOfTrainInput">
+          Datum & Zeit:
+        </label>
+        <ACDateTimePicker
         />
 
         <label for="comment">Zusätliche Infos:</label>
@@ -38,9 +44,9 @@
 <script>
 import VueTypes from 'vue-types';
 import DBStationsApi from '@/js/api/getDBStations';
-import DBStationArrivalBoard from '@/js/api/getDBStationArrivalBoard';
 import trainAndLocation from '@/js/api/trainAndLocationApi';
 import ACAutocomplete from '@/components/molecules/ACAutocomplete';
+import ACDateTimePicker from '@/components/molecules/ACDateTimePicker';
 import { debounce } from 'debounce';
 /*
 *
@@ -53,38 +59,34 @@ export default {
 
     components: {
       ACAutocomplete,
+      ACDateTimePicker,
     },
 
     data() {
       return {
         setTrainComment: "",
+        setStartOfTrain: "",
         setTrain: "",
         setTargetOfTrain: "",
-        DBStationsResponse: [],
-        DBStationArrivalBoard: [],
-        trainInputIsDisabled: true,
-      }
-    },
-
-    computed: {
-      allArrivingTrains() {
-        var filteredTrainList = new Array();
-        this.DBStationArrivalBoard.forEach((item) => {
-            filteredTrainList.push(
-              {
-                name: item.name,
-                id: item.detailsId
-              }
-            )
-        });
-        return filteredTrainList;
+        DBTargetStationsResponse: [],
+        DBStartStationsResponse: [],
       }
     },
 
     methods: {
 
-      inputStationHandler: debounce(function(query) {
-          this.sendStationSearch(query);
+      inputStartStationHandler: debounce(function(query) {
+          var isStart = true;
+          if(query.length > 2) {
+            this.sendStationSearch(query, isStart);
+          }
+      }, 300),
+
+      inputTargetStationHandler: debounce(function(query) {
+          var isStart = false;
+          if(query.length > 2) {
+            this.sendStationSearch(query, isStart);
+          }
       }, 300),
 
       async sendLocationAndTrain() {
@@ -98,25 +100,20 @@ export default {
           });
       },
 
-      async sendStationSearch(query) {
-        if(query.length > 2) {
-          this.DBStationsResponse = await DBStationsApi(query);
-        }
-      },
-
-      async checkTrainByTarget(id) {
-        var date = new Date();
-        var dd = String(date.getDate()).padStart(2, '0');
-        var mm = String(date.getMonth() + 1).padStart(2, '0');
-        var yyyy = date.getFullYear();
-        date = yyyy + '-' + mm + '-' + dd;
-        this.DBStationArrivalBoard = await DBStationArrivalBoard(id, date);
+      async sendStationSearch(query, isStart) {
+          if(isStart) {
+            this.DBStartStationsResponse = await DBStationsApi(query);
+          } else {
+            this.DBTargetStationsResponse = await DBStationsApi(query);
+          }
       },
 
       setTargetOfInput(target) {
         this.setTargetOfTrain = target;
-        this.checkTrainByTarget(target.id);
-        this.trainInputIsDisabled = false;
+      },
+
+      setStartOfInput(start) {
+        this.setStartOfTrain = start;
       },
 
       setTrainOfInput(train) {

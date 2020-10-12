@@ -1,6 +1,7 @@
 <template>
   <div class="autocomplete">
     <input
+      class="input-autocomplete"
       type="text"
       @input="onChange"
       v-model="search"
@@ -128,9 +129,14 @@
   };
 </script>
 
-<style>
+<style scoped>
   .autocomplete {
     position: relative;
+    width: 100%;
+  }
+
+  .input-autocomplete {
+    width: 100%;
   }
 
   .autocomplete-results {

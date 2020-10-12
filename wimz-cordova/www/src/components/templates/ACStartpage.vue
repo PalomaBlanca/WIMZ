@@ -143,32 +143,10 @@ export default {
 .giveInfoButton,
 .getInfoButton {
   position: relative;
-  background-color: $main-blue;
-  color: $button-color;
   font-size: 40px;
   padding: 20px;
-  border: none;
-  background: linear-gradient(-45deg, rgba(0,0,0,0.1), rgba(255,255,255,0.1));
-  box-shadow: 7px 10px 20px 4px rgba(0, 0, 0, 0.4), -8px -8px 20px 7px rgba(255, 255, 255, 0.15);
   height: 100px;
   width: 100px;
-
-
-  & + & {
-    margin-left: 50px;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    outline: none;
-    box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2),
-                inset -6px -6px 10px 0 rgba(255, 255, 255, 0.15);
-    background: linear-gradient(-45deg, rgba(255,255,255,0.15), rgba(0,0,0,0.15));
-  }
-
 }
 
 body {
