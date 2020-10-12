@@ -5,6 +5,13 @@
       <div class="row">
         <div class="give-info__content">
           <ACGiveInfoForm/>
+          <ACJourneyCard
+            startStation="Krefeld Hbf"
+            targetStation="Berlin Hbf"
+            startTime="9:00"
+            departure="18:00"
+            journeyId="0"
+          />
           <ACLoadingLayer v-if="loading"/>
           <ACMap :lng="lng" :lat="lat" v-else/>
         </div>
@@ -19,6 +26,7 @@ import ACHeader from '@/components/organisms/ACHeader';
 import ACLoadingLayer from '@/components/organisms/ACLoadingLayer';
 import ACMap from '@/components/organisms/ACMap';
 import ACGiveInfoForm from '@/components/organisms/ACGiveInfoForm';
+import ACJourneyCard from '@/components/molecules/ACJourneyCard';
 
 export default {
     name: 'ACGiveInfo',
@@ -29,6 +37,7 @@ export default {
         ACLoadingLayer,
         ACMap,
         ACGiveInfoForm,
+        ACJourneyCard
     },
 
     data() {

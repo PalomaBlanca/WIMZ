@@ -4,6 +4,16 @@
           @submit.prevent="sendLocationAndTrain"
     >
         <label for="setTargetOfTrainInput">
+          Start:
+        </label>
+        <ACAutocomplete
+          :listData="DBStationsResponse"
+          @newInput="inputStationHandler"
+          @setChoice="setStartOfInput"
+          :isAsync="true"
+        />
+
+        <label for="setTargetOfTrainInput">
           Ziel:
         </label>
         <ACAutocomplete
@@ -11,16 +21,6 @@
           @newInput="inputStationHandler"
           @setChoice="setTargetOfInput"
           :isAsync="true"
-        />
-
-        <label for="setTrainInput">
-          Zug:
-        </label>
-        <ACAutocomplete
-          :listData="allArrivingTrains"
-          @newInput=""
-          @setChoice="setTrainOfInput"
-          :isAsync="false"
         />
 
         <label for="comment">Zusätliche Infos:</label>
