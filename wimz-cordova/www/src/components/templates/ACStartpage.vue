@@ -149,6 +149,10 @@ export default {
   width: 100px;
 }
 
+.getInfoButton {
+  margin-left: 50px;
+}
+
 body {
   background-color: $main-blue;
 }

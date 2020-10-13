@@ -29,11 +29,6 @@ export default {
   background-color: $main-blue;
   color: $button-color;
 
-
-    & + & {
-      margin-left: 50px;
-    }
-
     &:focus {
       outline: none;
     }

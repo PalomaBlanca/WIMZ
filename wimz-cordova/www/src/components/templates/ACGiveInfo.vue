@@ -1,20 +1,22 @@
 <template>
   <div>
-    <ACHeader/>
+    <!--<ACHeader/>-->
     <div class="container give-info">
-      <div class="row">
-        <div class="give-info__content">
-          <ACGiveInfoForm/>
-          <ACJourneyCard
-            startStation="Krefeld Hbf"
-            targetStation="Berlin Hbf"
-            startTime="9:00"
-            departure="18:00"
-            journeyId="0"
-          />
-          <ACLoadingLayer v-if="loading"/>
-          <ACMap :lng="lng" :lat="lat" v-else/>
-        </div>
+      <div class="give-info__content row">
+        <ACGiveInfoForm
+          @journeys="setJourneyCards"
+        />
+        <ACJourneyCard
+          class="col-12"
+          v-for="journey in journeyList"
+          startStation=""
+          :targetStation="journey.legs[0].direction"
+          :departure="journey.legs[0].departure"
+          :arrival="journey.legs[0].arrival"
+          journeyId="0"
+        />
+        <ACLoadingLayer v-if="loading"/>
+        <ACMap :lng="lng" :lat="lat" v-else/>
       </div>
     </div>
   </div>
@@ -45,6 +47,7 @@ export default {
         lat: null,
         lng: null,
         loading: true,
+        journeyList: [],
       }
     },
 
@@ -53,6 +56,11 @@ export default {
     },
 
     methods: {
+      setJourneyCards(journeys) {
+        this.journeyList = journeys.journeys;
+        console.log("journeyList", journeys);
+      },
+
       getPosition() {
           return new Promise(function (resolve, reject) {
               navigator.geolocation.getCurrentPosition(resolve, reject, null);

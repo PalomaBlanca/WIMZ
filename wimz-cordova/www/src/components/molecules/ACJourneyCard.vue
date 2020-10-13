@@ -17,8 +17,8 @@ export default {
     props: {
       startStation: VueTypes.string.required,
       targetStation: VueTypes.string.required,
-      startTime: VueTypes.string.required,
       departure: VueTypes.string.required,
+      arrival: VueTypes.string.required,
       journeyId: VueTypes.number.required
     }
 }
@@ -31,6 +31,7 @@ export default {
   color: $main-white;
   padding: 10px;
   height: 150px;
+  margin: 15px;
   margin-bottom: 20px;
 }
 

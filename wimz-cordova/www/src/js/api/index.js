@@ -1,13 +1,17 @@
 import axios from 'axios';
 import { isProductionEnvironment } from '../../js/env.js';
 
-export default async function(route, externalUrl) {
+export default async function(route, externalUrl, getParams) {
   // Create a new axios instance with some default settings
 
   var url = `/api/${route}/index.php`;
 
   if(externalUrl) {
     url = `${externalUrl}`;
+  }
+
+  if(getParams) {
+    url = `${url}${getParams}`;
   }
 
   const api = axios.create({

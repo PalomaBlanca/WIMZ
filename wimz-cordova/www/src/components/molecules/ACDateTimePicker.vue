@@ -21,6 +21,12 @@ export default {
       return {
         date: "",
       }
+    },
+
+    watch: {
+      date() {
+        this.$emit('newDate', this.date);
+      }
     }
 }
 </script>
@@ -41,7 +47,7 @@ export default {
   border: none;
   background-color: $main-blue;
   box-shadow: inset 5px 6px 8px -2px rgba(0, 0, 0, 0.6),
-              inset -4px -5px 10px 0 rgba(255, 255, 255, 0.2);
+              inset -4px -5px 5px 0 rgba(255, 255, 255, 0.2);
   border-radius: 100px;
 }
 

@@ -4,10 +4,13 @@ export default async function(stationStartID, stationEndID, departure, getParams
   // for db  api
   //const authCodeDB = 'Bearer 3cb2aea43fe04d6e5e84330e36cf4ed0';
   // Send request
+  var getString = "";
+  if(departure) {
+    getString = `&departure=${departure}`;
+  }
 
-  const apiTest = await api('DBStations', `https://v5.db.transport.rest/journeys?from=${stationStartID}&to=${stationEndID}`, getParamsString);
-  const response = departure : await apiTest.get( `&departure=${departure}`) ? await apiTest.get('');
-
+  const apiTest = await api('DBStations', `https://v5.db.transport.rest/journeys?from=${stationStartID}&to=${stationEndID}`, getString);
+  const response = await apiTest.get('');
   // Return response
   return response.data;
 };

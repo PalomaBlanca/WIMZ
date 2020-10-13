@@ -117,13 +117,15 @@
     },
     watch: {
       listData: function (val, oldValue) {
-        console.log("CHECK EQUALITY", val, oldValue);
-        // actually compare them
-        //if (JSON.stringify(val) !== JSON.stringify(oldValue)) {
           this.results = val;
           this.isLoading = false;
-
       },
+
+      search: function() {
+        if(this.search.length < 3) {
+          this.isOpen = false;
+        }
+      }
     },
     mounted() {
       document.addEventListener('click', this.handleClickOutside)
@@ -153,20 +155,27 @@
     border: none;
     background-color: $main-blue;
     box-shadow: inset 5px 6px 8px -2px rgba(0, 0, 0, 0.6),
-                inset -4px -5px 10px 0 rgba(255, 255, 255, 0.2);
+                inset -4px -5px 5px 0 rgba(255, 255, 255, 0.2);
     border-radius: 100px;
 
     &::placeholder {
-      color: $main-white;
       opacity: 0.6;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 
   .autocomplete-results {
+    position:absolute;
+    background-color: $main-blue;
+    z-index: 2;
+    font-size: 14px;
     padding: 0;
     margin: 0;
-    border: 1px solid #eeeeee;
-    height: 120px;
+    border-radius: 20px;
+    height: 114px;
     overflow: auto;
     width: 100%;
   }
@@ -174,13 +183,13 @@
   .autocomplete-result {
     list-style: none;
     text-align: left;
-    padding: 4px 2px;
+    padding-left: 15px;
     cursor: pointer;
   }
 
   .autocomplete-result.is-active,
   .autocomplete-result:hover {
-    background-color: #4AAE9B;
+    background-color: $main-orange;
     color: white;
   }
 
