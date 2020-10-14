@@ -1,7 +1,7 @@
 <template>
   <div>
     <ACHeader/>
-      <div class="startText container">
+    <div class="startText container">
         <div class="row">
           <div class="col-12 startText__col">
             <div class="startText__content">
@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      <div class="navigation-choice container">
+    <div class="navigation-choice container">
         <div class="row">
           <div class="col-12 navigation-choice__col">
             <ACButton
@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="spacer">
+    <div class="spacer">
         <svg width="100%" height="100%" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
             <g transform="matrix(1.28337,0,0,0.944918,-71.3991,15.391)">
                 <path d="M1.508,398.513C5.516,355.418 19.937,337.27 46.921,303.43C94.737,243.462 250.451,154.558 299.899,90.625C318.278,66.862 291.467,21.688 313.782,1.575C335.063,-17.605 386.285,-24.65 399.725,0.651C475.157,142.662 452.549,170.909 264.551,226.819C211.886,242.481 160.517,279.608 146.156,321.53C136.619,349.371 128.469,383.191 106.87,395.922C76.606,413.762 35.937,405.504 1.508,398.513Z" style="fill:rgb(255,149,9);"/>
@@ -42,26 +42,25 @@
             <path d="M-71.351,239.278C55.105,238.147 181.56,237.015 308.016,235.883" style="fill:none;"/>
         </svg>
       </div>
-  <div class="introText container">
-    <div class="row">
-      <div class="col-12">
-        <i class="fas fa-route introText__route-icon"></i>
-        <p>Dadurch, dass du wimz? nutzt, können wir den öffentlichen Personennahverkehr planbar machen. Durch die Community von wimz? und der Regel jeder hilft jedem, können wir wertvolle Informationen teilen und uns unnötiges "Gewarte" oder "Gerenne" sparen.
-        </p>
+    <div class="introText container">
+      <div class="row">
+        <div class="col-12">
+          <i class="fas fa-route introText__route-icon"></i>
+          <p>Dadurch, dass du wimz? nutzt, können wir den öffentlichen Personennahverkehr planbar machen. Durch die Community von wimz? und der Regel jeder hilft jedem, können wir wertvolle Informationen teilen und uns unnötiges "Gewarte" oder "Gerenne" sparen.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="textWhite container">
+      <div class="row">
+        <div class="col-12">
+          <i class="fas fa-heart textWhite__broken-heart-icon"></i>
+          <p> Damit wir alle unsere Ziele erreichen, müssen wir ankommen. Dabei möchte man nicht auf jedemanden warten müssen und sich verspäten. Denn durch verpasste Züge zerbrechen Herzen und Freundschaften, zerplatzen Vorstellungsgespräche und steigern insgesamt die Negativität. Dafür benötigt man eine verlässliche Informationsquelle, damit der Zug ein zuverlässiges Fortbewegungsmittel ist.
+          </p>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="textWhite container">
-    <div class="row">
-      <div class="col-12">
-        <i class="fas fa-heart textWhite__broken-heart-icon"></i>
-        <p> Damit wir alle unsere Ziele erreichen, müssen wir ankommen. Dabei möchte man nicht auf jedemanden warten müssen und sich verspäten. Denn durch verpasste Züge zerbrechen Herzen und Freundschaften, zerplatzen Vorstellungsgespräche und steigern insgesamt die Negativität. Dafür benötigt man eine verlässliche Informationsquelle, damit der Zug ein zuverlässiges Fortbewegungsmittel ist.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>

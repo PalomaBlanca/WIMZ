@@ -2,17 +2,18 @@
   <div>
     <!--<ACHeader/>-->
     <div class="container give-info">
-      <div class="give-info__content row">
+      <div class="give-info__content row  justify-content-center">
         <ACGiveInfoForm
           @journeys="setJourneyCards"
         />
         <ACJourneyCard
           class="col-12"
           v-for="journey in journeyList"
-          startStation=""
+          :startStation="startOfJourney"
           :targetStation="journey.legs[0].direction"
           :departure="journey.legs[0].departure"
           :arrival="journey.legs[0].arrival"
+          :line="journey.legs[0].line"
           journeyId="0"
         />
         <ACLoadingLayer v-if="loading"/>
@@ -48,6 +49,7 @@ export default {
         lng: null,
         loading: true,
         journeyList: [],
+        startOfJourney: "",
       }
     },
 
@@ -56,9 +58,10 @@ export default {
     },
 
     methods: {
-      setJourneyCards(journeys) {
+      setJourneyCards(journeys, startOfJourney) {
+        console.log(journeys)
+        this.startOfJourney = startOfJourney.name;
         this.journeyList = journeys.journeys;
-        console.log("journeyList", journeys);
       },
 
       getPosition() {

@@ -37,9 +37,9 @@ export default {
 }
 
 .vdatetime-input {
-  @include typo-body;
+  @include typo-regular-filled;
   font-size: 14px;
-  padding-left: 15px;
+  padding-left: 35px;
   padding-right: 15px;
   color: $main-white;
   height: 40px;

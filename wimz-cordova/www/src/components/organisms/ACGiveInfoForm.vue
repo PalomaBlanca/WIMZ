@@ -94,7 +94,7 @@ export default {
 
     methods: {
       async emitUserInput() {
-        this.$emit('journeys', await DBJourneysApi(this.setStartOfTrain.id, this.setTargetOfTrain.id, this.departure));
+        this.$emit('journeys', await DBJourneysApi(this.setStartOfTrain.id, this.setTargetOfTrain.id, this.departure), this.setStartOfTrain);
       },
 
       setDeparture(dateTime) {
